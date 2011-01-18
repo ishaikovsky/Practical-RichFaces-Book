@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+	<h3>Sample 1</h3>
+	<rich:collapsiblePanel header="Panel Header" switchType="client"
+		leftCollapsedIcon="none" leftExpandedIcon="none">
+			Simple Collapsible Panel
+	</rich:collapsiblePanel>
+	
+	<h3>Sample 2</h3>
+	<rich:collapsiblePanel switchType="client"
+		leftCollapsedIcon="chevronUp" leftExpandedIcon="chevronDown">
+		<f:facet name="headerCollapsed">
+			<h:outputText
+				value="Write your own custom rich components with built-in AJAX support" />
+		</f:facet>
+		<f:facet name="headerExpanded">
+			<h:outputText
+				value="Write your own custom rich components with built-in AJAX support" />
+		</f:facet>
+		<h:outputText value="Panel Body" />
+	</rich:collapsiblePanel>
+
+</ui:composition>

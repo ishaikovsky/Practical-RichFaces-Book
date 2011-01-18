@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+	<h3>Sample 1</h3>
+	<h:commandButton value="Open simple modal without header"
+		onclick="#{rich:component('popup1')}.show();return false;" />
+
+	<h:commandButton value="Open with header resizeable abd moveable"
+		onclick="#{rich:component('popup2')}.show();return false;" />
+
+
+	<rich:popupPanel id="popup1">
+		<h:outputText
+			value="Text at simple RF panel without header. Text at simple RF panel without header. Text at simple RF panel without header. Text at simple RF panel without header. Text at simple RF panel without header. " />
+		<h:commandButton value="Close"
+			onclick="#{rich:component('popup1')}.hide(); return false;" />
+	</rich:popupPanel>
+
+	<rich:popupPanel id="popup2" resizeable="true">
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:graphicImage value="/images/yellow_lamp.gif" />
+				<h:outputText value="Modal Panel Header" />
+			</h:panelGroup>
+		</f:facet>
+		<f:facet name="controls">
+			<h:link value="X"
+				style="font-size:large; color:black; text-decoration:none;"
+				onclick="#{rich:component('popup2')}.hide(); return false;" />
+		</f:facet>
+		<h:outputText
+			value="Text at simple RF panel with header. Text at simple RF panel with header.Text at simple RF panel with header.Text at simple RF panel with header.Text at simple RF panel with header.Text at simple RF panel with header.Text at simple RF panel with header." />
+		<h:commandButton value="Close"
+			onclick="#{rich:component('popup2')}.hide(); return false;" />
+	</rich:popupPanel>
+
+	<h3>Sample 2</h3>
+
+	<rich:toolbar height="20">
+		<h:link value="Login!"
+			onclick="#{rich:component('popup3')}.show(); return false;" />
+	</rich:toolbar>
+	<rich:popupPanel id="popup3" top="265" left="15" modal="false"
+		header="Credentials" autosized="true">
+		<h:panelGrid columns="2">
+			<h:outputText value="Email:" />
+			<h:inputText />
+			<h:outputText value="Password:" />
+			<h:inputSecret />
+		</h:panelGrid>
+		<h:commandButton value="Login"
+			onclick="#{rich:component('popup3')}.hide(); return false;" />
+		
+	</rich:popupPanel>
+</ui:composition>

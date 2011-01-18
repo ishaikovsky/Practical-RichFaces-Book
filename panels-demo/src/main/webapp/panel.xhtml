@@ -1,15 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets" template="/templates/template.xhtml"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
 
-    <rich:panel>
-        <f:facet name="header">
-        Write your own custom rich components with built-in AJAX support
-        </f:facet>
-		<h:outputText value="Panel Body" /> 
+	<h3>sample 1</h3>
+	<rich:panel>
+		<h:outputText
+			value="Text at simple RF panel without header. Text at simple RF panel without header. Text at simple RF panel without header. Text at simple RF panel without header. Text at simple RF panel without header. " />
 	</rich:panel>
+	<br />
+	<rich:panel header="Simple RF panel">
+		<h:outputText
+			value="Text at simple RF panel. Text at simple RF panel. Text at simple RF panel. Text at simple RF panel. Text at simple RF panel. " />
+	</rich:panel>
+	<style>
+.highlight {
+	background-color: yellow;
+}
+</style>
+	<h3>sample 2</h3>
+	<rich:panel styleClass="custom"
+		onmouseover="jQuery('.custom .rf-p-b').addClass('highlight');"
+		onmouseout="jQuery('.custom .rf-p-b').removeClass('highlight');">
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:graphicImage value="/images/yellow_lamp.gif" />
+				<h:outputText value="Panel Header 2" />
+			</h:panelGroup>
+		</f:facet>
+		<h:graphicImage value="/images/richfaces-banner.png"
+			style="float:right" />
+		<p>Write your own custom rich components with built-in AJAX
+		support</p>
+		<p>Write your own custom rich components with built-in AJAX
+		support</p>
+		<p>Write your own custom rich components with built-in AJAX
+		support</p>
+		<p>Write your own custom rich components with built-in AJAX
+		support</p>
+	</rich:panel>
+
+	<rich:jQuery rendered="false"></rich:jQuery>
 </ui:composition>
