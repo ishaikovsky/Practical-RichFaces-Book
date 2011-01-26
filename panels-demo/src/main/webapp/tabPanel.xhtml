@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+	<h3>Sample 1</h3>
+
+	<h:form>
+		<rich:panel style="width:500px">
+			<f:facet name="header">rich:tabPanel and rich:tab</f:facet>
+			<rich:tabPanel switchType="ajax">
+				<rich:tab header="New York City">
+            Statue of Liberty
+        </rich:tab>
+				<rich:tab header="San Francisco">
+        Golden Gate Bridge
+    </rich:tab>
+				<rich:tab header="Los Angeles">
+        Hollywood
+    </rich:tab>
+			</rich:tabPanel>
+
+		</rich:panel>
+	</h:form>
+
+	<h3>Sample 2</h3>
+	<h:form>
+		<rich:panel style="width:500px">
+			<f:facet name="header">rich:tabPanel and rich:tab</f:facet>
+			<rich:tabPanel switchType="ajax">
+				<rich:tab>
+					<f:facet name="header">
+						<h:panelGrid columns="2">
+							<h:graphicImage value="/images/yellow_lamp.gif"></h:graphicImage>
+							<h:outputText value="New York City" />
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="Statue of Liberty" />
+				</rich:tab>
+				<rich:tab>
+					<f:facet name="header">
+						<h:panelGrid columns="2">
+							<h:graphicImage value="/images/yellow_lamp.gif"></h:graphicImage>
+							<h:outputText value="San Francisco" />
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="Golden Gate Bridge" />
+				</rich:tab>
+				<rich:tab disabled="true">
+					<f:facet name="header">
+						<h:panelGrid columns="2">
+							<h:graphicImage value="/images/yellow_lamp.gif"></h:graphicImage>
+							<h:outputText value="Los Angeles" />
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="Hollywood" />
+				</rich:tab>
+			</rich:tabPanel>
+		</rich:panel>
+	</h:form>
+	<h3>Sample 3</h3>
+	<h:form>
+		<rich:panel style="width:500px">
+			<f:facet name="header">rich:tabPanel and rich:tab</f:facet>
+			<rich:tabPanel switchType="ajax" activeItem="sf">
+				<rich:tab header="New York City" id="nyc">
+		            Statue of Liberty
+		        </rich:tab>
+				<rich:tab header="San Francisco" id="sf">
+		            Golden Gate Bridge
+		        </rich:tab>
+				<rich:tab header="Los Angeles" id="la">
+		            Hollywood
+		        </rich:tab>
+			</rich:tabPanel>
+		</rich:panel>
+	</h:form>
+</ui:composition>

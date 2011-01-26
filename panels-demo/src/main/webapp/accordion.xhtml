@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+	<h3>Sample 1</h3>
+	<h:form>
+<rich:popupPanel id="pp" modal="false">
+
+</rich:popupPanel>
+<h:commandButton value="test" onclick="#{rich:component('pp')}.show();"/>
+<script>
+	#{rich:component('pp')}.show();
+</script>
+	</h:form>
+</ui:composition>
