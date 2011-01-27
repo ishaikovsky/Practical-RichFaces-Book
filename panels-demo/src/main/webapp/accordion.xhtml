@@ -8,12 +8,67 @@
 	template="/templates/template.xhtml">
 	<h3>Sample 1</h3>
 	<h:form>
-<rich:popupPanel id="pp" modal="false">
-
-</rich:popupPanel>
-<h:commandButton value="test" onclick="#{rich:component('pp')}.show();"/>
-<script>
-	#{rich:component('pp')}.show();
-</script>
+		<rich:panel style="width:550px" header="Using rich:accordion">
+			<rich:accordion selectedPanel="sf">
+				<rich:accordionItem id="nyc" header="New York">
+           		Statue of Liberty
+       		</rich:accordionItem>
+				<rich:accordionItem id="sf" header="San Francisco">
+           		Golden Gate Bridge
+       		</rich:accordionItem>
+				<rich:accordionItem id="la" header="Los Angeles">
+            		Hollywood
+       		</rich:accordionItem>
+			</rich:accordion>
+		</rich:panel>
+	</h:form>
+	<h3>Sample 2</h3>
+	<h:form>
+		<rich:panel style="width:500px" header="Using rich:accordion">
+			<rich:accordion switchType="ajax">
+				<rich:accordionItem>
+					<f:facet name="header">
+						<h:panelGrid columns="2">
+							<h:outputText value="New York City" />
+							<h:graphicImage value="/images/yellow_lamp.gif"/>
+						</h:panelGrid>
+					</f:facet>
+					<h:graphicImage value="/images/NY-flag.png" style="float:right" />
+				    New York City (officially The City of New York) is the most populous
+				    city in the United States, with its metropolitan area
+				    ranking among the largest urban
+				    areas in the world. It has been the largest city in the United States
+				    since 1790, and was the country's first capital city and the site of George
+				    Washington's inauguration as the first president of the United States.
+				    For more than a century, it has been one of the world's major centers of
+				    commerce and finance. New York City is rated as an alpha world city for its
+				    global influences in media, politics, education, entertainment, arts and
+				    fashion. The city is also a major center for foreign affairs, hosting the
+				    headquarters of the United Nations.
+				    New York City comprises five boroughs, each of which is coextensive with a
+				    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
+				    With over 8.2 million residents within an area of 322 square miles (830 km),
+				    New York City is the most densely populated major city in the United States.
+    			</rich:accordionItem>
+				<rich:accordionItem>
+					<f:facet name="header">
+						<h:panelGrid columns="2">
+							<h:outputText value="San Francisco" />
+							<h:graphicImage value="/images/yellow_lamp.gif"/>
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="Golden Gate Bridge" />
+				</rich:accordionItem>
+				<rich:accordionItem disabled="true">
+					<f:facet name="header">
+						<h:panelGrid columns="2">
+							<h:outputText value="Los Angeles" />
+							<h:graphicImage value="/images/yellow_lamp.gif"/>
+						</h:panelGrid>
+					</f:facet>
+					<h:outputText value="Hollywood" />
+				</rich:accordionItem>
+			</rich:accordion>
+		</rich:panel>
 	</h:form>
 </ui:composition>
