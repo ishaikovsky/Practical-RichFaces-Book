@@ -11,7 +11,7 @@
 	<h:form>
 		<rich:panel style="width:500px">
 			<f:facet name="header">rich:tabPanel and rich:tab</f:facet>
-			<rich:tabPanel switchType="ajax">
+			<rich:tabPanel switchType="ajax" >
 				<rich:tab header="New York City">
             Statue of Liberty
         </rich:tab>
@@ -66,16 +66,77 @@
 		<rich:panel style="width:500px">
 			<f:facet name="header">rich:tabPanel and rich:tab</f:facet>
 			<rich:tabPanel switchType="ajax" activeItem="sf">
-				<rich:tab header="New York City" id="nyc">
+				<rich:tab header="New York City" name="nyc">
 		            Statue of Liberty
 		        </rich:tab>
-				<rich:tab header="San Francisco" id="sf">
+				<rich:tab header="San Francisco" name="sf">
 		            Golden Gate Bridge
 		        </rich:tab>
-				<rich:tab header="Los Angeles" id="la">
+				<rich:tab header="Los Angeles" name="la">
 		            Hollywood
 		        </rich:tab>
 			</rich:tabPanel>
 		</rich:panel>
 	</h:form>
+	<h3>Sample 4</h3>
+	<h:form>
+		<rich:panel style="width:500px">
+			<h:selectOneRadio value="#{cityTabBean.city}"
+				valueChangeListener="#{cityTabBean.changeCity}">
+				<f:selectItem itemLabel="New York" itemValue="nyc" />
+				<f:selectItem itemLabel="San Francisco" itemValue="sf" />
+				<f:selectItem itemLabel="Los Angeles" itemValue="la" />
+				<a4j:ajax event="change" render="cityTabs @this" />
+			</h:selectOneRadio>
+		</rich:panel>
+		<rich:panel style="width:500px" header="rich:tabPanel and rich:tab">
+			<rich:tabPanel switchType="ajax" id="cityTabs"
+				activeItem="#{cityTabBean.selectedTab}">
+				<rich:tab header="New York City" name="nyc">
+                  Statue of Liberty
+              </rich:tab>
+				<rich:tab header="San Francisco" name="sf">
+                  Golden Gate Bridge
+              </rich:tab>
+				<rich:tab header="Los Angeles" name="la">
+                  Hollywood
+              </rich:tab>
+			</rich:tabPanel>
+		</rich:panel>
+	</h:form>
+	<h3>Sample 5</h3>
+	<style>
+		a{margin-right:10px;}
+	</style>
+	<rich:panel style="width:500px" header="rich:tabPanel and rich:tab">
+		<h:form>
+        <rich:panel>
+            <a4j:commandLink value="First"       
+                onclick="#{rich:component('tp')}.switchToItem('@first');return false;" />
+            <a4j:commandLink value="Previous"       
+                onclick="#{rich:component('tp')}.switchToItem('@prev');return false;" />
+            <a4j:commandLink value="New York City"
+                onclick="#{rich:component('tp')}.switchToItem('nyc');return false;" />
+            <a4j:commandLink value="San Francisco"
+                onclick="#{rich:component('tp')}.switchToItem('sf');return false;" />
+            <a4j:commandLink value="Los Angeles" 
+                onclick="#{rich:component('tp')}.switchToItem('la');return false;" />
+            <a4j:commandLink value="Next"       
+                onclick="#{rich:component('tp')}.switchToItem('@next');return false;" />
+            <a4j:commandLink value="Last"
+                onclick="#{rich:component('tp')}.switchToItem('@last');return false;" />
+        </rich:panel>
+			<rich:tabPanel switchType="ajax" id="tp">
+				<rich:tab header="New York City" name="nyc">
+                  Statue of Liberty
+              </rich:tab>
+				<rich:tab header="San Francisco" name="sf">
+                  Golden Gate Bridge
+              </rich:tab>
+				<rich:tab header="Los Angeles" name="la">
+                  Hollywood
+              </rich:tab>
+			</rich:tabPanel>
+		</h:form>
+	</rich:panel>
 </ui:composition>
