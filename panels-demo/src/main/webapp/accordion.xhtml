@@ -9,7 +9,7 @@
 	<h3>Sample 1</h3>
 	<h:form>
 		<rich:panel style="width:550px" header="Using rich:accordion">
-			<rich:accordion selectedPanel="sf">
+			<rich:accordion activeItem="sf">
 				<rich:accordionItem id="nyc" header="New York">
            		Statue of Liberty
        		</rich:accordionItem>
@@ -25,12 +25,13 @@
 	<h3>Sample 2</h3>
 	<h:form>
 		<rich:panel style="width:500px" header="Using rich:accordion">
-			<rich:accordion switchType="ajax">
+			<rich:accordion switchType="ajax" itemRightIconInactive="chevronUp"
+				itemRightIconActive="chevronDown" itemRightIconDisabled="grid">
 				<rich:accordionItem>
 					<f:facet name="header">
 						<h:panelGrid columns="2">
 							<h:outputText value="New York City" />
-							<h:graphicImage value="/images/yellow_lamp.gif"/>
+							<h:graphicImage value="/images/yellow_lamp.gif" />
 						</h:panelGrid>
 					</f:facet>
 					<h:graphicImage value="/images/NY-flag.png" style="float:right" />
@@ -54,7 +55,7 @@
 					<f:facet name="header">
 						<h:panelGrid columns="2">
 							<h:outputText value="San Francisco" />
-							<h:graphicImage value="/images/yellow_lamp.gif"/>
+							<h:graphicImage value="/images/yellow_lamp.gif" />
 						</h:panelGrid>
 					</f:facet>
 					<h:outputText value="Golden Gate Bridge" />
@@ -63,7 +64,7 @@
 					<f:facet name="header">
 						<h:panelGrid columns="2">
 							<h:outputText value="Los Angeles" />
-							<h:graphicImage value="/images/yellow_lamp.gif"/>
+							<h:graphicImage value="/images/yellow_lamp.gif" />
 						</h:panelGrid>
 					</f:facet>
 					<h:outputText value="Hollywood" />

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+	<h3>Sample 1</h3>
+	<h:form>
+		<rich:panel style="width:450px">
+			<rich:togglePanel id="quotes" cycledSwitching="true" switchType="ajax">
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText
+							value="C makes it easy to shoot
+                   yourself in the foot; C++ makes it harder, but when you do,
+                   it blows away your whole leg." />
+						<h:outputText value="- Bjarne Stroustrup"
+							style="font-style: italic" />
+						<h:commandButton value="Next">
+							<rich:toggleControl switchTo="@Next" />
+						</h:commandButton>
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText value="If you are going through hell, keep going." />
+						<h:outputText
+							value="- Sir Winston Churchill
+                   (1874-1965)"
+							style="font-style: italic" />
+						<h:commandButton value="Next">
+							<rich:toggleControl switchTo="@Next" />
+						</h:commandButton>
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText
+							value="Life is pleasant. Death is peaceful.
+                   It's the transition that's troublesome." />
+						<h:outputText value="- Isaac Asimov" style="font-style: italic" />
+						<h:commandButton value="Next">
+							<rich:toggleControl switchTo="@Next" />
+						</h:commandButton>
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText
+							value="Make everything as simple as possible,
+                   but not simpler." />
+						<h:outputText value="- Albert Einstein (1879-1955)"
+							style="font-style: italic" />
+						<h:commandButton value="Next">
+							<rich:toggleControl switchTo="@Next" />
+						</h:commandButton>
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText
+							value="If women didn't exist, all the money
+                   in the world would have no meaning." />
+						<h:outputText value="- Aristotle Onassis (1906-1975)"
+							style="font-style: italic" />
+						<h:commandButton value="Next">
+							<rich:toggleControl switchTo="@Next" />
+						</h:commandButton>
+					</h:panelGrid>
+
+				</rich:togglePanelItem>
+			</rich:togglePanel>
+		</rich:panel>
+	</h:form>
+</ui:composition>
