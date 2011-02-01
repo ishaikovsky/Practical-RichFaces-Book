@@ -89,8 +89,8 @@
 				<a4j:ajax event="change" render="cityTabs @this" />
 			</h:selectOneRadio>
 		</rich:panel>
-		<rich:panel style="width:500px" header="rich:tabPanel and rich:tab">
-			<rich:tabPanel switchType="ajax" id="cityTabs"
+		<rich:panel style="width:500px" header="rich:tabPanel and rich:tab" id="cityTabs">
+			<rich:tabPanel switchType="ajax" 
 				activeItem="#{cityTabBean.selectedTab}">
 				<rich:tab header="New York City" name="nyc">
                   Statue of Liberty

@@ -9,18 +9,22 @@
 	<h3>Sample 1</h3>
 	<h:form>
 		<rich:panel style="width:450px">
-			<rich:togglePanel id="quotes" cycledSwitching="true" switchType="ajax">
+			<rich:togglePanel id="quotes" switchType="ajax"
+				cycledSwitching="true">
 				<rich:togglePanelItem>
 					<h:panelGrid>
 						<h:outputText
 							value="C makes it easy to shoot
-                   yourself in the foot; C++ makes it harder, but when you do,
-                   it blows away your whole leg." />
+                   			yourself in the foot; C++ makes it harder, but when you do,
+                   			it blows away your whole leg." />
 						<h:outputText value="- Bjarne Stroustrup"
 							style="font-style: italic" />
-						<h:commandButton value="Next">
-							<rich:toggleControl switchTo="@Next" />
-						</h:commandButton>
+						<h:commandLink value="pr">
+							<rich:toggleControl targetItem="@prev" />
+						</h:commandLink>
+						<h:commandLink value="Next">
+							<rich:toggleControl targetItem="@next" />
+						</h:commandLink>
 					</h:panelGrid>
 				</rich:togglePanelItem>
 				<rich:togglePanelItem>
@@ -28,50 +32,176 @@
 						<h:outputText value="If you are going through hell, keep going." />
 						<h:outputText
 							value="- Sir Winston Churchill
-                   (1874-1965)"
+                   				(1874-1965)"
 							style="font-style: italic" />
-						<h:commandButton value="Next">
-							<rich:toggleControl switchTo="@Next" />
-						</h:commandButton>
+						<h:commandLink value="Next">
+							<rich:toggleControl targetItem="@next" />
+						</h:commandLink>
+						<h:commandLink value="pr">
+							<rich:toggleControl targetItem="@prev" />
+						</h:commandLink>
 					</h:panelGrid>
 				</rich:togglePanelItem>
 				<rich:togglePanelItem>
 					<h:panelGrid>
 						<h:outputText
 							value="Life is pleasant. Death is peaceful.
-                   It's the transition that's troublesome." />
+                   				It's the transition that's troublesome." />
 						<h:outputText value="- Isaac Asimov" style="font-style: italic" />
-						<h:commandButton value="Next">
-							<rich:toggleControl switchTo="@Next" />
-						</h:commandButton>
+						<h:commandLink value="Next">
+							<rich:toggleControl targetItem="@next" />
+						</h:commandLink>
 					</h:panelGrid>
 				</rich:togglePanelItem>
 				<rich:togglePanelItem>
 					<h:panelGrid>
 						<h:outputText
 							value="Make everything as simple as possible,
-                   but not simpler." />
+                   				but not simpler." />
 						<h:outputText value="- Albert Einstein (1879-1955)"
 							style="font-style: italic" />
-						<h:commandButton value="Next">
-							<rich:toggleControl switchTo="@Next" />
-						</h:commandButton>
+						<h:commandLink value="Next">
+							<rich:toggleControl targetItem="@next" />
+						</h:commandLink>
 					</h:panelGrid>
 				</rich:togglePanelItem>
 				<rich:togglePanelItem>
 					<h:panelGrid>
 						<h:outputText
 							value="If women didn't exist, all the money
-                   in the world would have no meaning." />
+                   				in the world would have no meaning." />
 						<h:outputText value="- Aristotle Onassis (1906-1975)"
 							style="font-style: italic" />
-						<h:commandButton value="Next">
-							<rich:toggleControl switchTo="@Next" />
-						</h:commandButton>
+						<h:commandLink value="Next">
+							<rich:toggleControl targetItem="@next" />
+						</h:commandLink>
 					</h:panelGrid>
-
 				</rich:togglePanelItem>
 			</rich:togglePanel>
 		</rich:panel>
+	</h:form>
+
+	<h3>Sample 2</h3>
+	<h:form>
+		<rich:panel style="width:450px">
+			<rich:togglePanel id="tp2" switchType="ajax">
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText
+							value="C makes it easy to shoot
+                   			yourself in the foot; C++ makes it harder, but when you do,
+                   			it blows away your whole leg." />
+						<h:outputText value="- Bjarne Stroustrup"
+							style="font-style: italic" />
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText value="If you are going through hell, keep going." />
+						<h:outputText
+							value="- Sir Winston Churchill
+                   				(1874-1965)"
+							style="font-style: italic" />
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText
+							value="Life is pleasant. Death is peaceful.
+                   				It's the transition that's troublesome." />
+						<h:outputText value="- Isaac Asimov" style="font-style: italic" />
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem name="einstein">
+					<h:panelGrid>
+						<h:outputText
+							value="Make everything as simple as possible,
+                   				but not simpler." />
+						<h:outputText value="- Albert Einstein (1879-1955)"
+							style="font-style: italic" />
+					</h:panelGrid>
+				</rich:togglePanelItem>
+				<rich:togglePanelItem>
+					<h:panelGrid>
+						<h:outputText
+							value="If women didn't exist, all the money
+                   				in the world would have no meaning." />
+						<h:outputText value="- Aristotle Onassis (1906-1975)"
+							style="font-style: italic" />
+					</h:panelGrid>
+				</rich:togglePanelItem>
+			</rich:togglePanel>
+			<h:panelGrid columns="3">
+				<h:commandButton value="Back">
+					<rich:toggleControl targetPanel="tp2" targetItem="@prev" />
+				</h:commandButton>
+				<h:commandButton value="Einstein's quote">
+					<rich:toggleControl targetPanel="tp2" targetItem="einstein" />
+				</h:commandButton>
+				<h:commandButton value="Next">
+					<rich:toggleControl targetPanel="tp2" targetItem="@next" />
+				</h:commandButton>
+			</h:panelGrid>
+		</rich:panel>
+	</h:form>
+
+	<h3>Sample 3</h3>
+	<style>
+.tab {
+	padding: 2px 3px;
+	background-color: #{ richSkin.headerBackgroundColor
+}
+
+;
+}
+a.control {
+	color: #{ richSkin.headerTextColor
+}
+;
+text-decoration
+:none
+;
+
+	
+}
+</style>
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+			<rich:panel style="width:450px; height:100px;">
+				<rich:togglePanel id="tp2" switchType="ajax">
+					<rich:togglePanelItem name="stroustrup">
+						<h:outputText
+							value="C makes it easy to shoot
+                   			yourself in the foot; C++ makes it harder, but when you do,
+                   			it blows away your whole leg." />
+					</rich:togglePanelItem>
+					<rich:togglePanelItem name="churchill">
+						<h:outputText value="If you are going through hell, keep going." />
+					</rich:togglePanelItem>
+					<rich:togglePanelItem name="einstein">
+						<h:outputText
+							value="Make everything as simple as possible,
+                   				but not simpler." />
+					</rich:togglePanelItem>
+				</rich:togglePanel>
+			</rich:panel>
+			<h:panelGroup>
+				<rich:panel bodyClass="tab">
+					<h:commandLink styleClass="control" value="Stroustrup's quote">
+						<rich:toggleControl targetPanel="tp2" targetItem="stroustrup" />
+					</h:commandLink>
+				</rich:panel>
+				<rich:panel bodyClass="tab">
+					<h:commandLink styleClass="control" value="Churchill's quote">
+						<rich:toggleControl targetPanel="tp2" targetItem="churchill" />
+					</h:commandLink>
+				</rich:panel>
+				<rich:panel bodyClass="tab">
+					<h:commandLink styleClass="control" value="Einstein's quote">
+						<rich:toggleControl targetPanel="tp2" targetItem="einstein" />
+					</h:commandLink>
+				</rich:panel>
+			</h:panelGroup>
+		</h:panelGrid>
 	</h:form>
 </ui:composition>
