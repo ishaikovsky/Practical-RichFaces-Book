@@ -33,15 +33,125 @@
 		<f:facet name="header">
         Modal panel
     </f:facet>
-			<f:facet name="controls">
-				<h:link value="X"
-					style="font-size:large; color:black; text-decoration:none;"
-					onclick="#{rich:component('modalPanel3')}.hide(); return false;" />
-			</f:facet>
+		<f:facet name="controls">
+			<h:link value="X"
+				style="font-size:large; color:black; text-decoration:none;"
+				onclick="#{rich:component('modalPanel3')}.hide(); return false;" />
+		</f:facet>
 
 		<h:outputText value="Cool, I just opened a modal panel!" />
 		<a href="#" onclick="#{rich:component('modalPanel3')}.hide()">Hide</a>
 	</rich:popupPanel>
+
+
+	<h3>Sample 4</h3>
+
+	<h:commandButton value="Open">
+		<rich:componentControl operation="show" target="modalPanel4" />
+	</h:commandButton>
+	<rich:popupPanel id="modalPanel4" modal="false">
+		<f:facet name="header">
+        Non-modal popup panel
+    </f:facet>
+		<f:facet name="controls">
+			<h:graphicImage value="/modalPanel/close.png" style="cursor:pointer"
+				onclick="Richfaces.hideModalPanel('modalPanel')" />
+		</f:facet>
+		<h:outputText value="Cool, I just opened non-modal popup panel!" />
+		<h:link value="Hide">
+			<rich:componentControl event="click" operation="hide"
+				target="modalPanel4" />
+		</h:link>
+	</rich:popupPanel>
+
+	<h3>Sample 5</h3>
+
+	<h:commandButton value="Show popup">
+		<rich:componentControl target="modalPanel5" operation="show">
+			<a4j:param noEscape="true" value="event" />
+			<rich:hashParam>
+				<f:param name="minWidth" value="300px" />
+				<f:param name="minHeight" value="150px" />
+				<a4j:param noEscape="true" name="left"
+					value="(jQuery(window).width()/2)-250" />
+				<a4j:param noEscape="true" name="top"
+					value="(jQuery(window).height()/2)-150" />
+			</rich:hashParam>
+		</rich:componentControl>
+	</h:commandButton>
+	<rich:popupPanel id="modalPanel5" modal="false" resizeable="true"
+		header="Dynamic popup panel" moveable="true">
+		<f:facet name="controls">
+			<h:graphicImage value="/modalPanel/close.png" style="cursor:pointer"
+				onclick="Richfaces.hideModalPanel('modalPanel')" />
+		</f:facet>
+		<p>Cool, I just opened non-modal popup panel passing parameters
+		from script!</p>
+		<p>It could be resized and moved to any part of the screen"</p>
+		<a href="#" onclick="#{rich:component('modalPanel5')}.hide()">Hide</a>
+	</rich:popupPanel>
+
+	<h3>Sample 6</h3>
+
+	<h:form>
+		<a4j:commandLink value="Open"
+			onclick="#{rich:component('modalPanel6')}.show()" render="time" />
+	</h:form>
+	<rich:popupPanel id="modalPanel6" autosized="true" header="Time panel">
+		<h:panelGrid>
+			<h:outputText value="Cool, I just opened a modal panel!" />
+			<h:outputText id="time" value="Time: #{simplePopupBean.now}">
+				<f:convertDateTime />
+			</h:outputText>
+		</h:panelGrid>
+		<a href="#" onclick="#{rich:component('modalPanel6')}.hide()">Hide</a>
+	</rich:popupPanel>
+
+	<h3>Sample 7</h3>
+	<rich:popupPanel id="modalPanel7" autosized="true" header="Welcome!"
+		show="#{simplePopupBean.justRegistered}">
+		We hope you're getting much fun playing with RichFaces stuff!!
+		<a href="#" onclick="#{rich:component('modalPanel7')}.hide()">Hide</a>
+	</rich:popupPanel>
+
+	<h3>Sample 8</h3>
+	<rich:popupPanel id="modalPanel8" header="Modal panel" width="350"
+		height="150">
+		<h:form>
+			<h:panelGrid>
+				<h:outputText value="Name:" />
+				<h:inputText value="#{userBean.name}" />
+				<h:outputText value="Age:" />
+				<h:inputText value="#{userBean.age}" />
+				<h:panelGroup>
+					<a4j:commandButton value="Close" id="close"
+						onclick="#{rich:component('modalPanel8')}.hide();return false;" />
+					<a4j:commandButton value="Save and Close" id="save"
+						reRender="input"
+						oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('modalPanel8')}.hide();" />
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:form>
+	</rich:popupPanel>
+	<a4j:outputPanel ajaxRendered="true">
+		<rich:popupPanel id="msgPanel" modal="true" zindex="101"
+			header="Correct your input!" autosized="true"
+			show="#{facesContext.maximumSeverity!=null}">
+			<h:messages ajaxRendered="true" style="color:red" />
+			<a href="#" onclick="#{rich:component('msgPanel')}.hide()">Hide</a>
+		</rich:popupPanel>
+	</a4j:outputPanel>
+
+	<h:form>
+		<h:panelGrid id="input">
+			<h:outputText value="Name: #{modalPanelBean.name}" />
+			<h:link value="Launch wizard">
+				<rich:componentControl target="modalPanel8" operation="show"
+					event="click" />
+			</h:link>
+		</h:panelGrid>
+	</h:form>
+
 
 	<ui:remove>
 		<hr />
