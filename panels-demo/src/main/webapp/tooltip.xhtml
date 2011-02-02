@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/templates/template.xhtml">
+	<h3>Sample 1</h3>
+	<rich:panel style="width:350px">
+		<f:facet name="header">
+	        Using rich:toolTip
+    	</f:facet>
+		<h:outputText id="nyc" value="New York City"
+			style="font-size: xx-large;" />
+		<rich:tooltip mode="ajax" target="nyc">
+			<h:panelGrid style="width:200px">
+		          New York City is the most populous city in the United States,
+		          with its metropolitan area ranking among the
+		          largest urban areas in the world.
+		          For more than a century, it has been one of the world's major centers of
+		          commerce and finance.
+				</h:panelGrid>
+		</rich:tooltip>
+	</rich:panel>
+	<h3>Sample 2</h3>
+	<rich:panel style="width:350px">
+		<f:facet name="header">
+	        Using rich:toolTip
+    	</f:facet>
+		<h:outputText id="nyc2" value="New York City"
+			style="font-size: xx-large;" />
+		<rich:tooltip mode="client" followMouse="true">
+			<f:facet name="loading">
+        Loading...
+    </f:facet>
+			<h:panelGrid style="width:200px">
+        New York City is the most populous city in the United States,
+        with its metropolitan area ranking among the
+        largest urban areas in the world.
+        For more than a century, it has been one of the world's major centers of
+        commerce and finance.
+        </h:panelGrid>
+		</rich:tooltip>
+	</rich:panel>
+	<h3>Sample 3</h3>
+	<h:form>
+		<rich:panel style="width:350px">
+			<f:facet name="header">
+        Using rich:toolTip
+    </f:facet>
+			<h:outputText id="nyc" value="New York City"
+				style="font-size: xx-large;" />
+			<rich:tooltip mode="ajax" for="nyc" followMouse="true">
+				<f:facet name="loading">
+            Loading...
+        </f:facet>
+				<h:panelGrid style="width:200px">
+					<h:outputText value="#{tooltip.now}" style="font-weight:bold" />
+          New York City is the most populous city in the United States,
+          with its metropolitan area ranking among the
+          largest urban areas in the world.
+          For more than a century, it has been one of the world's major centers of
+          commerce and finance.
+          <h:graphicImage value="/images/NY-flag.png" />
+					<h:outputText value="Tooltip invoked #{tooltip.counter} times"
+						style="font-weight:italic" />
+				</h:panelGrid>
+			</rich:tooltip>
+		</rich:panel>
+	</h:form>
+
+	<h3>Sample 4</h3>
+<h:form>
+	<rich:dataTable id="statesTable" value="#{capitalsBean.capitals}"
+		var="cap" rows="10">
+		<rich:column>
+			<f:facet name="header">State</f:facet>
+			<h:outputText value="#{cap.state}" id="text"/>
+			<rich:tooltip target="text" mode="ajax"> 
+				<h:panelGrid> 
+					<h:outputText value="#{cap.name}" style="font-weight:bold" />
+					<h:outputText value="#{cap.state}" />
+					<h:graphicImage value="#{cap.stateFlag}" />
+				</h:panelGrid>
+			</rich:tooltip>
+		</rich:column>
+	</rich:dataTable>
+</h:form>
+
+</ui:composition>

@@ -14,7 +14,7 @@ public class CityTabBean {
 
     public void changeCity(ValueChangeEvent event) {
 
-        selectedTab = city;
+        selectedTab = (String)event.getNewValue();
     }
 
     public String getCity() {
