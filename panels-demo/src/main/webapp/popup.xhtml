@@ -122,17 +122,17 @@
 				<rich:tab header="personal">
 					<h:panelGrid columns="2">
 						<h:outputText value="Name:" />
-						<h:inputText value="#{userBean.name}" label="username"/>
+						<h:inputText value="#{userBean.name}" label="username" />
 						<h:outputText value="Age:" />
-						<h:inputText value="#{userBean.age}" label="age"/>
+						<h:inputText value="#{userBean.age}" label="age" />
 					</h:panelGrid>
 				</rich:tab>
 				<rich:tab header="Location">
 					<h:panelGrid columns="2">
 						<h:outputText value="City:" />
-						<h:inputText value="#{userBean.city}" id="city"/>
+						<h:inputText value="#{userBean.city}" id="city" />
 						<h:outputText value="Country:" />
-						<h:inputText value="#{userBean.country}" label="country"/>
+						<h:inputText value="#{userBean.country}" label="country" />
 					</h:panelGrid>
 				</rich:tab>
 			</rich:tabPanel>
@@ -156,13 +156,66 @@
 			<h:outputText value="Age: #{userBean.age}" />
 			<h:outputText value="City: #{userBean.city}" />
 			<h:outputText value="Country: #{userBean.country}" />
-			<a href="#" onclick="#{rich:component('modalPanel8')}.show()">Create/Edit User wizard</a>
+			<a href="#" onclick="#{rich:component('modalPanel8')}.show()">Create/Edit
+			User wizard</a>
 		</h:panelGrid>
 	</h:form>
 
+	<h3>Sample 9</h3>
+	<h:form>
+		<rich:dataTable value="#{airlinesBean.airlines}" var="airline">
+			<f:facet name="header">Airlines</f:facet>
+			<rich:column>
+				<f:facet name="header">Name</f:facet>
+       		 #{airline.name}
+	      </rich:column>
+			<rich:column>
+				<f:facet name="header">Actions</f:facet>
+				<a4j:commandLink value="View"
+					oncomplete="#{rich:component('popupPanel9')}.show()"
+					render="airlineInfo">
+					<f:setPropertyActionListener value="#{airline}"
+						target="#{airlinesBean.selected}" />
+				</a4j:commandLink>
+			</rich:column>
+		</rich:dataTable>
+	</h:form>
+	<rich:popupPanel id="popupPanel9" width="250" height="100">
+		<f:facet name="header">
+      Airline Information
+	</f:facet>
+		<h:panelGrid id="airlineInfo" columns="2">
+			<h:outputText value="Name:" />
+			<h:outputText value="#{airlinesBean.selected.name}" />
+			<h:outputText value="Code" />
+			<h:outputText value="#{airlinesBean.selected.code}" />
+		</h:panelGrid>
+		<a href="#"
+			onclick="#{rich:component('popupPanel9')}.hide();return false;">Close</a>
+	</rich:popupPanel>
 
+	<h3>Sample 10</h3>
+	<h:form>
+		<a4j:commandButton actionListener="#{bean.calculate}"
+			value="Calculate" />
+	</h:form>
+	<rich:popupPanel id="mp" style="text-align:center">
+		<h:outputText value="Please wait..."
+			style="font-weight:bold;font-size:large" />
+	</rich:popupPanel>
+	<a4j:status id="actionStatus"
+		onstart="#{rich:component('mp')}.show('',{height:'80', width:'150'})"
+		onstop="#{rich:component('mp')}.hide()" />
+
+	<div style="height: 300px;"></div>
 	<ui:remove>
 		<hr />
+		<a4j:outputPanel id="updateToLoadPanel">
+			<rich:popupPanel rendered="#{controller.panelNeed}">
+				<ui:include src="#{controller.currentPanelURI}" />
+			</rich:popupPanel>
+		</a4j:outputPanel>
+
 
 		<h3>Sample 1</h3>
 		<h:commandButton value="Open simple modal without header"
