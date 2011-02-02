@@ -116,21 +116,30 @@
 
 	<h3>Sample 8</h3>
 	<rich:popupPanel id="modalPanel8" header="Modal panel" width="350"
-		height="150">
+		height="150" autosized="true">
 		<h:form>
-			<h:panelGrid>
-				<h:outputText value="Name:" />
-				<h:inputText value="#{userBean.name}" />
-				<h:outputText value="Age:" />
-				<h:inputText value="#{userBean.age}" />
-				<h:panelGroup>
-					<a4j:commandButton value="Close" id="close"
-						onclick="#{rich:component('modalPanel8')}.hide();return false;" />
-					<a4j:commandButton value="Save and Close" id="save"
-						reRender="input"
-						oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('modalPanel8')}.hide();" />
-				</h:panelGroup>
-			</h:panelGrid>
+			<rich:tabPanel switchType="client">
+				<rich:tab header="personal">
+					<h:panelGrid columns="2">
+						<h:outputText value="Name:" />
+						<h:inputText value="#{userBean.name}" label="username"/>
+						<h:outputText value="Age:" />
+						<h:inputText value="#{userBean.age}" label="age"/>
+					</h:panelGrid>
+				</rich:tab>
+				<rich:tab header="Location">
+					<h:panelGrid columns="2">
+						<h:outputText value="City:" />
+						<h:inputText value="#{userBean.city}" id="city"/>
+						<h:outputText value="Country:" />
+						<h:inputText value="#{userBean.country}" label="country"/>
+					</h:panelGrid>
+				</rich:tab>
+			</rich:tabPanel>
+			<a4j:commandButton value="Close" id="close"
+				onclick="#{rich:component('modalPanel8')}.hide();return false;" />
+			<a4j:commandButton value="Save and Close" id="save" render="input"
+				oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('modalPanel8')}.hide();" />
 		</h:form>
 	</rich:popupPanel>
 	<a4j:outputPanel ajaxRendered="true">
@@ -141,14 +150,13 @@
 			<a href="#" onclick="#{rich:component('msgPanel')}.hide()">Hide</a>
 		</rich:popupPanel>
 	</a4j:outputPanel>
-
 	<h:form>
 		<h:panelGrid id="input">
-			<h:outputText value="Name: #{modalPanelBean.name}" />
-			<h:link value="Launch wizard">
-				<rich:componentControl target="modalPanel8" operation="show"
-					event="click" />
-			</h:link>
+			<h:outputText value="Name: #{userBean.name}" />
+			<h:outputText value="Age: #{userBean.age}" />
+			<h:outputText value="City: #{userBean.city}" />
+			<h:outputText value="Country: #{userBean.country}" />
+			<a href="#" onclick="#{rich:component('modalPanel8')}.show()">Create/Edit User wizard</a>
 		</h:panelGrid>
 	</h:form>
 

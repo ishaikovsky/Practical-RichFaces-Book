@@ -3,21 +3,26 @@ package org.richfaces.book.examples.common;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
-@ManagedBean(name = "userBean")
+@ManagedBean
 @RequestScoped
 public class UserBean {
-    @Length(min=3, max=15)
-	private String name = "";
+    @Length(min = 3, max = 15, message="Name should be defined(3 to 15 characters)")
+    private String name = "";
     private String email = "";
     private String password = "";
     private String address;
-    @Min(value=18, message="You should be over 18 years to place orders")
+    @Min(value = 18, message = "You should be over 18 years to place orders")
+    @NotNull(message="Age should be specified")
     private Integer age;
-    private String city;
+    @NotEmpty(message="City should be specified")
+    private String city=null;
+    @NotEmpty(message="Country should be specified")
+    private String country=null;
     private String job;
     private String recordStatus;
     private String zip;
@@ -112,5 +117,13 @@ public class UserBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
