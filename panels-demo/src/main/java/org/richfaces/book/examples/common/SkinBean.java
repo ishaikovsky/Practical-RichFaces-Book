@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -28,8 +27,7 @@ public class SkinBean implements Serializable {
     private String skin;
     private List<String> skins;
 
-    @PostConstruct
-    public void initialize() {
+    public SkinBean() {
         skins = new ArrayList<String>();
         skins.add("blueSky");
         skins.add("classic");
@@ -38,7 +36,7 @@ public class SkinBean implements Serializable {
         skins.add("japanCherry");
         skins.add("ruby");
         skins.add("wine");
-    }
+	}
 
     private String getViewParameter(String name) {
         FacesContext fc = FacesContext.getCurrentInstance();
