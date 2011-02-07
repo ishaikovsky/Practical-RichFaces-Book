@@ -44,13 +44,13 @@
 	</rich:panel>
 	<h3>Sample 3</h3>
 	<h:form>
-		<rich:panel style="width:350px">
+		<rich:panel style="width:350px" >
 			<f:facet name="header">
         Using rich:toolTip
     </f:facet>
 			<h:outputText id="nyc" value="New York City"
 				style="font-size: xx-large;" />
-			<rich:tooltip mode="ajax" for="nyc" followMouse="true">
+			<rich:tooltip mode="ajax" for="nyc" followMouse="true" showEvent="click">
 				<f:facet name="loading">
             Loading...
         </f:facet>
