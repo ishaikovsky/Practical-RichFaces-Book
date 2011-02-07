@@ -1,0 +1,19 @@
+.rich-link {
+	border-width: 1px;
+	border-style: solid;
+	display:inline-block;
+	padding: 3px;
+	color: '#{richSkin.generalTextColor}';
+	font-family: '#{richSkin.generalFamilyFont}';
+	font-size: '#{richSkin.generalSizeFont}';
+	background-color: '#{richSkin.generalBackgroundColor}';
+	border-color: '#{richSkin.panelBorderColor}';
+}
+
+.rich-link-label {
+
+}
+
+.rich-link-icon {
+
+}
