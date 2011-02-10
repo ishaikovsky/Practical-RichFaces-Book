@@ -7,8 +7,54 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
 	template="/templates/template.xhtml">
-	<h3>sample 1</h3>
+	<h3>Sample 1</h3>
+	<rich:panel style="width:650px">
+		<f:facet name="header">
+        Using rich:toolBar
+    </f:facet>
+		<h:form>
+			<rich:toolbar>
+				<a4j:commandLink id="nyc" value="New York City"
+					actionListener="#{toolbarBean.cityListener}" />
+				<a4j:commandLink id="sf" value="San Francisco"
+					actionListener="#{toolbarBean.cityListener}" />
+				<a4j:commandLink id="la" value="Los Angeles"
+					actionListener="#{toolbarBean.cityListener}" />
+			</rich:toolbar>
+		</h:form>
+		<rich:panel>
+			<a4j:outputPanel ajaxRendered="true">
+				<h:panelGrid rendered="#{toolbarBean.nyc}">
+            New York City is the most populous city in the United States,
+            with its metropolitan area ranking among the
+            largest urban areas in the world.
+            For more than a century, it has been one of the world's major centers
+            of commerce and finance. New York City is rated as an alpha world
+            city for its global influences in media, politics, education,
+            entertainment, arts and fashion. The city is also a major center
+            for foreign affairs, hosting the headquarters of the United Nations.
+        </h:panelGrid>
+				<h:panelGrid rendered="#{toolbarBean.sf}">
+            San Francisco is the fourth most populous city in California and the
+            14th most populous city in the United States.
+            San Francisco is a popular international tourist destination renowned
+            for its steep rolling hills, an eclectic mix of Victorian and modern
+            architecture, and famous landmarks, including the Golden Gate Bridge,
+            Alcatraz Island, the cable cars, Coit Tower, and Chinatown.
+        </h:panelGrid>
+				<h:panelGrid rendered="#{toolbarBean.la}">
+            Los Angeles is the largest city in the state of California and the
+            second-largest in the United States. Los Angeles is one of the
+            world's centers of culture, technology,
+            media, business, and international trade.
+        </h:panelGrid>
+			</a4j:outputPanel>
+		</rich:panel>
+	</rich:panel>
+
+
+	<h3>sample x</h3>
 	<rich:toolbar>
-		<b:richLink label="Open"/>
+		<b:richLink label="Open" />
 	</rich:toolbar>
 </ui:composition>
