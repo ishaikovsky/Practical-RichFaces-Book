@@ -14,6 +14,9 @@
     </f:facet>
 		<h:form>
 			<rich:toolbar>
+				<f:facet name="itemSeparator">
+					<h:outputText value="|" />
+				</f:facet>
 				<a4j:commandLink id="nyc" value="New York City"
 					actionListener="#{toolbarBean.cityListener}" />
 				<a4j:commandLink id="sf" value="San Francisco"
@@ -52,9 +55,90 @@
 		</rich:panel>
 	</rich:panel>
 
-
-	<h3>sample x</h3>
-	<rich:toolbar>
-		<b:richLink label="Open" />
+	<h3>sample 2</h3>
+	<rich:panel style="width:650px">
+		<f:facet name="header">
+        Using rich:toolBar
+    </f:facet>
+		<h:form>
+			<rich:toolbar itemSeparator="line">
+				<a4j:commandLink id="nyc" value="New York City"
+					actionListener="#{toolBarBean.cityListener}" />
+				<rich:toolbarGroup itemSeparator="square" location="right">
+					<a4j:commandLink id="sf" value="San Francisco"
+						actionListener="#{toolBarBean.cityListener}" />
+					<a4j:commandLink id="la" value="Los Angeles"
+						actionListener="#{toolBarBean.cityListener}" />
+				</rich:toolbarGroup>
+			</rich:toolbar>
+		</h:form>
+		<rich:panel>
+			<a4j:outputPanel ajaxRendered="true">
+				<h:panelGrid rendered="#{toolbarBean.nyc}">
+            New York City is the most populous city in the United States,
+            with its metropolitan area ranking among the
+            largest urban areas in the world.
+            For more than a century, it has been one of the world's major centers
+            of commerce and finance. New York City is rated as an alpha world
+            city for its global influences in media, politics, education,
+            entertainment, arts and fashion. The city is also a major center
+            for foreign affairs, hosting the headquarters of the United Nations.
+        </h:panelGrid>
+				<h:panelGrid rendered="#{toolbarBean.sf}">
+            San Francisco is the fourth most populous city in California and the
+            14th most populous city in the United States.
+            San Francisco is a popular international tourist destination renowned
+            for its steep rolling hills, an eclectic mix of Victorian and modern
+            architecture, and famous landmarks, including the Golden Gate Bridge,
+            Alcatraz Island, the cable cars, Coit Tower, and Chinatown.
+        </h:panelGrid>
+				<h:panelGrid rendered="#{toolbarBean.la}">
+            Los Angeles is the largest city in the state of California and the
+            second-largest in the United States. Los Angeles is one of the
+            world's centers of culture, technology,
+            media, business, and international trade.
+        </h:panelGrid>
+			</a4j:outputPanel>
+		</rich:panel>
+	</rich:panel>
+	<h3>sample 3</h3>
+	<rich:panel>
+		<rich:toolbar itemSeparator="line">
+			<h:graphicImage value="/images/states/california.gif" width="24"
+				height="21" />
+			<h:graphicImage value="/images/states/newyork.gif" width="24"
+				height="21" />
+			<h:graphicImage value="/images/states/florida.gif" width="24"
+				height="21" />
+			<h:graphicImage value="/images/states/massachusetts.gif" width="24"
+				height="21" />
+		</rich:toolbar>
+	</rich:panel>
+	<h3>sample 4</h3>
+	<rich:toolbar height="21">
+		<h:outputLink value="#" id="ll">
+			<rich:componentControl event="click" operation="show"
+				target="loginPane">
+				<a4j:param name="event" value="event" noEscape="true" />
+				<rich:hashParam>
+					<a4j:param noEscape="true" name="top"
+						value="jQuery(#{rich:element('ll')}.parentNode).offset().top + jQuery(#{rich:element('ll')}.parentNode).height()" />
+					<a4j:param noEscape="true" name="left"
+						value="jQuery(#{rich:element('ll')}.parentNode).offset().left" />
+				</rich:hashParam>
+			</rich:componentControl>
+            Account</h:outputLink>
 	</rich:toolbar>
+	<rich:popupPanel id="loginPane"  modal="false" autosized="true">
+		<h:form>
+		<h:panelGrid columns="2">
+				Name:
+				<h:inputText value="" />
+				Password:
+				<h:inputSecret value="" />
+		</h:panelGrid>
+		<h:commandButton value="Login" onclick="#{rich:component('loginPane')}.hide();"/>
+		</h:form>
+	</rich:popupPanel>
+	<div style="height: 500px;"></div>
 </ui:composition>

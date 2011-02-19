@@ -8,106 +8,94 @@
 	template="/templates/template.xhtml">
 
 	<h3>sample 1</h3>
-	<rich:panel style="width:450px">
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
- </rich:panel>
+	<h:form>
+		<rich:panel style="width:450px" header="Using rich:panelMenu">
+			<rich:panelMenu mode="ajax" topItemLeftIcon="disc"
+				itemLeftIcon="grid" topGroupExpandedLeftIcon="chevronDown"
+				groupExpandedLeftIcon="triangleDown" expandSingle="false">
+				<rich:panelMenuGroup label="Group 1">
+					<rich:panelMenuItem label="Item 1.1" />
+					<rich:panelMenuItem label="Item 1.2" />
+					<rich:panelMenuGroup label="Group 1.3">
+						<rich:panelMenuItem label="Item 1.3.1" />
+						<rich:panelMenuGroup label="Group 1.3.2">
+							<rich:panelMenuItem label="Item 1.3.2.1" />
+						</rich:panelMenuGroup>
+					</rich:panelMenuGroup>
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="Group 2">
+					<rich:panelMenuItem label="Item 2.1" />
+				</rich:panelMenuGroup>
+				<rich:panelMenuItem label="Item 3" />
+			</rich:panelMenu>
+		</rich:panel>
+	</h:form>
+
 	<h3>sample 2</h3>
-	<rich:panel style="width:450px">
-		<f:facet name="header">New York City</f:facet>
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
- </rich:panel>
+	<h:form>
+		<rich:panel style="width:450px" header="Using rich:panelMenu">
+			<rich:panelMenu topItemLeftIcon="disc" itemLeftIcon="grid"
+				topGroupExpandedLeftIcon="chevronDown"
+				groupExpandedLeftIcon="triangleDown" expandSingle="false">
+				<rich:panelMenuGroup>
+					<f:facet name="label">
+						<h:outputText value="Group 1" />
+					</f:facet>
+					<rich:panelMenuItem>
+						<h:outputText value="Item 1.1" />
+					</rich:panelMenuItem>
+					<rich:panelMenuItem>
+						<h:outputText value="Item 1.2" />
+					</rich:panelMenuItem>
+					<rich:panelMenuGroup label="Group 1.3">
+						<rich:panelMenuItem label="Item 1.3.1" />
+						<rich:panelMenuGroup label="Group 1.3.2">
+							<rich:panelMenuItem label="Item 1.3.2.1" />
+						</rich:panelMenuGroup>
+					</rich:panelMenuGroup>
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="Group 2">
+					<rich:panelMenuItem label="Item 2.1" />
+				</rich:panelMenuGroup>
+				<rich:panelMenuItem label="Item 3" />
+			</rich:panelMenu>
+		</rich:panel>
+	</h:form>
+
 	<h3>sample 3</h3>
-	<rich:panel style="width:450px">
-		<f:facet name="header">New York City</f:facet>
-		<h:graphicImage value="/images/NY-flag.png" style="float:right" />
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
-         <rich:panel>
-			<f:facet name="header">
-				<h:panelGroup>
-					<h:graphicImage value="/images/yellow_lamp.gif" />
-					<h:outputText value="5 Boroughs" />
-				</h:panelGroup>
-			</f:facet>
-        New York City comprises five boroughs, each of which is coextensive 
-        with a county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-        With over 8.2 million residents within an area of 322 square miles 
-        (830 km), New York City is the most densely populated major city in 
-        the United States.
-        </rich:panel>
-	</rich:panel>
-	<h3>sample 4</h3>
-
-	<style>
-.body:hover {
-	background-color: yellow;
-}
-
-.highlight-font {
-	text-decoration: underline;
-}
-</style>
-	<rich:panel bodyClass="body" headerClass="header" style="width:450px"
-		onmouseover="jQuery('.header').addClass('highlight-font');"
-		onmouseout="jQuery('.header').removeClass('highlight-font');">
-		<f:facet name="header">New York City</f:facet>
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
-	</rich:panel>
-
-	<rich:jQuery rendered="false"></rich:jQuery>
+	<h:form>
+		<h:panelGrid columns="2">
+			<rich:panelMenu topGroupCollapsedLeftIcon="chevronUp" width="200px"
+				topGroupExpandedLeftIcon="chevronDown">
+				<rich:panelMenuGroup selectable="true" mode="ajax" label="File"
+					render="menu" action="#{panelMenuBean.listenerFileGroup}">
+					<rich:panelMenuItem label="New" leftIcon="/images/icons/new.gif"
+						actionListener="#{panelMenuBean.listenerNew}" render="menu" />
+					<rich:panelMenuItem label="Open File..."
+						leftIcon="/images/icons/new.gif"
+						actionListener="#{panelMenuBean.listenerOpenFile}" render="menu" />
+					<rich:panelMenuItem label="Save" leftIcon="/images/icons/save.gif"
+						actionListener="#{panelMenuBean.listenerSave}" render="menu" />
+					<rich:panelMenuItem label="Save All"
+						leftIcon="/images/icons/save_all.gif"
+						actionListener="#{panelMenuBean.listenerSaveAll}" render="menu" />
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="Help">
+					<rich:panelMenuItem label="About"
+						leftIcon="/images/icons/yellow_lamp.gif" mode="client" onclick="#{rich:component('about')}.show()">
+					</rich:panelMenuItem>
+				</rich:panelMenuGroup>
+			</rich:panelMenu>
+			<h:panelGroup id="menu">
+				<h:outputText value="#{panelMenuBean.menuSelected}" />
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+	<rich:popupPanel id="about" header="About">
+		<h:form>
+			<h:outputText
+				value="That popup opened from &lt;rich:panelMenuItem&gt; component. " />
+			<h:commandLink value="Hide" onclick="#{rich:component('about')}.hide();return false;"/>
+		</h:form>
+	</rich:popupPanel>
 </ui:composition>

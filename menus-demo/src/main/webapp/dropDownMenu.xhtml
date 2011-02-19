@@ -8,106 +8,102 @@
 	template="/templates/template.xhtml">
 
 	<h3>sample 1</h3>
-	<rich:panel style="width:450px">
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
- </rich:panel>
-	<h3>sample 2</h3>
-	<rich:panel style="width:450px">
-		<f:facet name="header">New York City</f:facet>
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
- </rich:panel>
-	<h3>sample 3</h3>
-	<rich:panel style="width:450px">
-		<f:facet name="header">New York City</f:facet>
-		<h:graphicImage value="/images/NY-flag.png" style="float:right" />
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
-         <rich:panel>
-			<f:facet name="header">
-				<h:panelGroup>
-					<h:graphicImage value="/images/yellow_lamp.gif" />
-					<h:outputText value="5 Boroughs" />
-				</h:panelGroup>
-			</f:facet>
-        New York City comprises five boroughs, each of which is coextensive 
-        with a county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-        With over 8.2 million residents within an area of 322 square miles 
-        (830 km), New York City is the most densely populated major city in 
-        the United States.
-        </rich:panel>
-	</rich:panel>
-	<h3>sample 4</h3>
+	<h:form>
+		<rich:toolbar>
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:outputText value="File" />
+				</f:facet>
+				<rich:menuItem label="New" />
+				<rich:menuItem label="Open File..." />
+				<rich:menuItem label="Close" />
+				<rich:menuItem label="Close All" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:outputText value="Edit" />
+				</f:facet>
+				<rich:menuItem label="Undo" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:outputText value="Help" />
+				</f:facet>
+				<rich:menuItem label="About" />
+			</rich:dropDownMenu>
+		</rich:toolbar>
+	</h:form>
+	<h3>Sample 2</h3>
+	<h:form>
+		<h:panelGrid columns="2">
+			<rich:toolbar width="150px">
+				<rich:dropDownMenu mode="ajax" label="File">
+					<rich:menuItem label="New"
+						actionListener="#{dropDownBean.listenerNew}" render="menu" />
+					<rich:menuItem label="Open File..."
+						actionListener="#{dropDownBean.listenerOpenFile}" render="menu" />
+					<rich:menuItem label="Close"
+						actionListener="#{dropDownBean.listenerClose}" render="menu" />
+					<rich:menuItem label="Close All"
+						actionListener="#{dropDownBean.listenerCloseAll}" render="menu" />
+				</rich:dropDownMenu>
+				<rich:dropDownMenu label="Edit" mode="ajax">
+					<rich:menuItem label="Undo"
+						actionListener="#{dropDownBean.listenerUndo}" render="menu" />
+				</rich:dropDownMenu>
+				<rich:dropDownMenu label="Help">
+					<rich:menuItem mode="client" label="About"
+						onclick="#{rich:component('about')}.show();" />
+				</rich:dropDownMenu>
+			</rich:toolbar>
+			<h:panelGroup id="menu">
+				<h:outputText value="#{dropDownBean.menuSelected}" />
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+	<rich:popupPanel id="about" height="120">
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:graphicImage value="/images/icons/yellow_lamp.gif" />
+				<h:outputText value="About" />
+			</h:panelGroup>
+		</f:facet>
+		<h:panelGrid>
+			<h:outputText value="About text goes here" />
+			<a href="#" onclick="#{rich:component('about')}.hide();return false">
+			OK </a>
+		</h:panelGrid>
+	</rich:popupPanel>
+	<h3>Sample 3</h3>
+	<rich:toolbar width="150px">
+		<rich:dropDownMenu mode="ajax" label="File">
+			<rich:menuItem label="New" icon="/images/icons/new.gif" />
+			<rich:menuItem label="Open File..." icon="/images/icons/open.gif" />
+			<rich:menuItem label="Save" icon="/images/icons/save.gif" />
+			<rich:menuItem label="Save All" icon="/images/icons/save_all.gif" />
+		</rich:dropDownMenu>
+	</rich:toolbar>
 
-	<style>
-.body:hover {
-	background-color: yellow;
-}
+	<h3>Sample 4</h3>
+	<rich:toolbar>
+		<rich:dropDownMenu mode="ajax" label="File">
+			<rich:menuItem label="New" icon="/images/icons/new.gif" />
+			<rich:menuItem label="Open File..." icon="/images/icons/open.gif" />
+			<rich:menuGroup label="save">
+				<rich:menuItem label="Save" icon="/images/icons/save.gif" />
+				<rich:menuItem label="Save As.." icon="/images/icons/save_as.gif" />
+				<rich:menuItem label="Save All" icon="/images/icons/save_all.gif" />
+			</rich:menuGroup>
+			<rich:menuSeparator />
+			<rich:menuItem label="Print" icon="/images/icons/print.gif"></rich:menuItem>
+			<rich:menuItem label="Print Preview"
+				icon="/images/icons/print_preview.gif"></rich:menuItem>
+		</rich:dropDownMenu>
+	</rich:toolbar>
+	<h3>Sample 5</h3>
 
-.highlight-font {
-	text-decoration: underline;
-}
-</style>
-	<rich:panel bodyClass="body" headerClass="header" style="width:450px"
-		onmouseover="jQuery('.header').addClass('highlight-font');"
-		onmouseout="jQuery('.header').removeClass('highlight-font');">
-		<f:facet name="header">New York City</f:facet>
-    New York City (officially The City of New York) is the most populous
-    city in the United States, with its metropolitan area
-    ranking among the largest urban
-    areas in the world. It has been the largest city in the United States
-    since 1790, and was the country's first capital city and the site of George
-    Washington's inauguration as the first president of the United States.
-    For more than a century, it has been one of the world's major centers of
-    commerce and finance. New York City is rated as an alpha world city for its
-    global influences in media, politics, education, entertainment, arts and
-    fashion. The city is also a major center for foreign affairs, hosting the
-    headquarters of the United Nations.
-    New York City comprises five boroughs, each of which is coextensive with a
-    county: The Bronx, Brooklyn, Manhattan, Queens and Staten Island.
-    With over 8.2 million residents within an area of 322 square miles (830 km),
-    New York City is the most densely populated major city in the United States.
-	</rich:panel>
-
-	<rich:jQuery rendered="false"></rich:jQuery>
+	<rich:toolbar width="100px;">
+		<rich:menuItem label="New" icon="/images/icons/new.gif" />
+		<rich:menuItem label="Open File..." icon="/images/icons/open.gif" />
+	</rich:toolbar>
 </ui:composition>
