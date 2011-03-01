@@ -58,7 +58,7 @@
 		<season>Summer</season>
 		<fromDate>1/1/1916</fromDate>
 		<toDate>1/1/1916</toDate>
-		<note>canceled</note>
+		<status>canceled</status>
 	</game>
 	<game>
 		<city>Antwerp</city>
@@ -159,7 +159,7 @@
 		<season>Winter</season>
 		<fromDate>1/1/1940</fromDate>
 		<toDate>1/1/1940</toDate>
-		<note>canceled</note>
+		<status>canceled</status>
 	</game>
 	<game>
 		<city>Tokyo</city>
@@ -170,7 +170,7 @@
 		<season>Summer</season>
 		<fromDate>1/1/1940</fromDate>
 		<toDate>1/1/1940</toDate>
-		<note>canceled</note>
+		<status>canceled</status>
 	</game>
 	<game>
 		<city>Cortina d'Ampezzo</city>
@@ -181,7 +181,7 @@
 		<season>Winter</season>
 		<fromDate>1/1/1944</fromDate>
 		<toDate>1/1/1944</toDate>
-		<note>canceled</note>
+		<status>canceled</status>
 	</game>
 	<game>
 		<city>London</city>
@@ -192,7 +192,7 @@
 		<season>Summer</season>
 		<fromDate>1/1/1944</fromDate>
 		<toDate>1/1/1944</toDate>
-		<note>canceled</note>
+		<status>canceled</status>
 	</game>
 	<game>
 		<city>St. Moritz</city>
@@ -543,6 +543,7 @@
 		<season>Summer</season>
 		<fromDate>7/27/2012</fromDate>
 		<toDate>8/12/2012</toDate>
+		<status>future</status>
 	</game>
 	<game>
 		<city>Sochi</city>
@@ -553,6 +554,7 @@
 		<season>Winter</season>
 		<fromDate>2/7/2014</fromDate>
 		<toDate>2/23/2014</toDate>
+		<status>future</status>
 	</game>
 	<game>
 		<city>Rio de Janeiro</city>
@@ -563,5 +565,6 @@
 		<season>Summer</season>
 		<fromDate>8/5/2016</fromDate>
 		<toDate>8/21/2016</toDate>
+		<status>future</status>
 	</game>
 </games>

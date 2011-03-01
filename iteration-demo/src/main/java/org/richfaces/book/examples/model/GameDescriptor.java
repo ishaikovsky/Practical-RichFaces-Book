@@ -2,10 +2,13 @@ package org.richfaces.book.examples.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.richfaces.book.examples.util.CalendarConverter;
 
 public class GameDescriptor implements Serializable {
 	private String city;
@@ -14,17 +17,45 @@ public class GameDescriptor implements Serializable {
 	private String flagName;
 	private int number;
 	private seasons season;
-	private String note;
+	private statuses status = statuses.passed;
+
+	private enum statuses {
+		passed, future, canceled
+	};
 
 	private enum seasons {
 		Winter, Summer
 	};
 
-	private Calendar fromDate = Calendar.getInstance(Locale.US);
-	private Calendar toDate = Calendar.getInstance(Locale.US);
+	private Calendar fromDate = new GregorianCalendar(Locale.US);
+	private Calendar toDate = new GregorianCalendar(Locale.US);
 
-	public GameDescriptor() {
+	public int getYear() {
+		return fromDate.get(Calendar.YEAR);
+	}
 
+	public String getFrom() {
+		if (!status.equals(statuses.canceled)) {
+			return fromDate.get(Calendar.DAY_OF_MONTH)
+					+ " "
+					+ fromDate.getDisplayName(Calendar.MONTH, Calendar.LONG,
+							Locale.US);
+		} else
+			return "";
+	}
+
+	public String getTo() {
+		if (!status.equals(statuses.canceled)) {
+			return toDate.get(Calendar.DAY_OF_MONTH)
+					+ " "
+					+ toDate.getDisplayName(Calendar.MONTH, Calendar.LONG,
+							Locale.US);
+		} else
+			return "";
+	}
+
+	public String getFlagURI() {
+		return "/images/flags/" + flagName + ".png";
 	}
 
 	@XmlElement
@@ -72,7 +103,8 @@ public class GameDescriptor implements Serializable {
 		this.number = number;
 	}
 
-	@XmlElement(type=Calendar.class)
+	@XmlElement
+	@XmlJavaTypeAdapter(value = CalendarConverter.class)
 	public Calendar getFromDate() {
 		return fromDate;
 	}
@@ -81,7 +113,8 @@ public class GameDescriptor implements Serializable {
 		this.fromDate = fromDate;
 	}
 
-	@XmlElement(type=Calendar.class)
+	@XmlElement
+	@XmlJavaTypeAdapter(value = CalendarConverter.class)
 	public Calendar getToDate() {
 		return toDate;
 	}
@@ -95,12 +128,12 @@ public class GameDescriptor implements Serializable {
 	}
 
 	@XmlElement
-	public String getNote() {
-		return note;
+	public statuses getStatus() {
+		return status;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setStatus(statuses status) {
+		this.status = status;
 	}
 
 	@XmlElement

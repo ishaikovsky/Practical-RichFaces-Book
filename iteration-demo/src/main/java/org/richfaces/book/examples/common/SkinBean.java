@@ -23,7 +23,7 @@ public class SkinBean implements Serializable {
 	 */
 	private static final long serialVersionUID = -2399884208294434812L;
 	private static final String SKIN_VIEW_PARAMETER = "skin";
-	@ManagedProperty(value = "largeFont")
+	@ManagedProperty(value = "blueSky")
 	private String skin;
 	private List<String> skins;
 
