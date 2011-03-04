@@ -61,8 +61,25 @@
 			</rich:panelMenu>
 		</rich:panel>
 	</h:form>
-
 	<h3>sample 3</h3>
+	<h:form>
+		<rich:panelMenu topGroupCollapsedLeftIcon="chevronUp" width="200px"
+			topGroupExpandedLeftIcon="chevronDown">
+			<rich:panelMenuGroup label="File">
+				<rich:panelMenuItem label="New" leftIcon="/images/icons/new.gif" />
+				<rich:panelMenuItem label="Open File..."
+					leftIcon="/images/icons/new.gif" />
+				<rich:panelMenuItem label="Save" leftIcon="/images/icons/save.gif" />
+				<rich:panelMenuItem label="Save All"
+					leftIcon="/images/icons/save_all.gif" />
+			</rich:panelMenuGroup>
+			<rich:panelMenuGroup label="Help">
+				<rich:panelMenuItem label="About"
+					leftIcon="/images/icons/yellow_lamp.gif" />
+			</rich:panelMenuGroup>
+		</rich:panelMenu>
+	</h:form>
+	<h3>sample 4</h3>
 	<h:form>
 		<h:panelGrid columns="2">
 			<rich:panelMenu topGroupCollapsedLeftIcon="chevronUp" width="200px"
@@ -82,7 +99,8 @@
 				</rich:panelMenuGroup>
 				<rich:panelMenuGroup label="Help">
 					<rich:panelMenuItem label="About"
-						leftIcon="/images/icons/yellow_lamp.gif" mode="client" onclick="#{rich:component('about')}.show()">
+						leftIcon="/images/icons/yellow_lamp.gif" mode="client"
+						onclick="#{rich:component('about')}.show()">
 					</rich:panelMenuItem>
 				</rich:panelMenuGroup>
 			</rich:panelMenu>
@@ -95,7 +113,8 @@
 		<h:form>
 			<h:outputText
 				value="That popup opened from &lt;rich:panelMenuItem&gt; component. " />
-			<h:commandLink value="Hide" onclick="#{rich:component('about')}.hide();return false;"/>
+			<h:commandLink value="Hide"
+				onclick="#{rich:component('about')}.hide();return false;" />
 		</h:form>
 	</rich:popupPanel>
 </ui:composition>

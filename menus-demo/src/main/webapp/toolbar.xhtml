@@ -129,15 +129,16 @@
 			</rich:componentControl>
             Account</h:outputLink>
 	</rich:toolbar>
+	<rich:messages/>
 	<rich:popupPanel id="loginPane"  modal="false" autosized="true">
 		<h:form>
 		<h:panelGrid columns="2">
 				Name:
-				<h:inputText value="" />
+				<h:inputText value="#{userBean.userName}" />
 				Password:
-				<h:inputSecret value="" />
+				<h:inputSecret value="#{userBean.password}" />
 		</h:panelGrid>
-		<h:commandButton value="Login" onclick="#{rich:component('loginPane')}.hide();"/>
+		<h:commandButton value="Login" onclick="#{rich:component('loginPane')}.hide();" action="#{userBean.login}"/>
 		</h:form>
 	</rich:popupPanel>
 	<div style="height: 500px;"></div>

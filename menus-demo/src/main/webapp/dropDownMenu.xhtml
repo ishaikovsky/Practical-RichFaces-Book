@@ -89,7 +89,7 @@
 		<rich:dropDownMenu mode="ajax" label="File">
 			<rich:menuItem label="New" icon="/images/icons/new.gif" />
 			<rich:menuItem label="Open File..." icon="/images/icons/open.gif" />
-			<rich:menuGroup label="save">
+			<rich:menuGroup label="Save">
 				<rich:menuItem label="Save" icon="/images/icons/save.gif" />
 				<rich:menuItem label="Save As.." icon="/images/icons/save_as.gif" />
 				<rich:menuItem label="Save All" icon="/images/icons/save_all.gif" />
@@ -100,10 +100,12 @@
 				icon="/images/icons/print_preview.gif"></rich:menuItem>
 		</rich:dropDownMenu>
 	</rich:toolbar>
-	<h3>Sample 5</h3>
+	<ui:remove>
+		<h3>Sample 5</h3>
 
-	<rich:toolbar width="100px;">
-		<rich:menuItem label="New" icon="/images/icons/new.gif" />
-		<rich:menuItem label="Open File..." icon="/images/icons/open.gif" />
-	</rich:toolbar>
+		<rich:toolbar width="100px;">
+			<rich:menuItem label="New" icon="/images/icons/new.gif" />
+			<rich:menuItem label="Open File..." icon="/images/icons/open.gif" />
+		</rich:toolbar>
+	</ui:remove>
 </ui:composition>
