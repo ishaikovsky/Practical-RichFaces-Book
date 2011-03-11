@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
+	template="/templates/template.xhtml">
+
+
+	<h3>Sample 1</h3>
+	<rich:panel style="width:650px" header="rich:dataTable complex markup">
+		<rich:dataTable value="#{olympicGamesBean.gamesMapKeys}"
+			var="continent">
+			<f:facet name="header">
+				<rich:columnGroup>
+					<rich:column colspan="9">Games by Continent</rich:column>
+					<rich:column colspan="2" breakRowBefore="true"></rich:column>
+					<rich:column colspan="3">Place</rich:column>
+					<rich:column colspan="3">Dates</rich:column>
+					<rich:column>Notes</rich:column>
+				</rich:columnGroup>
+			</f:facet>
+			<rich:column colspan="9">
+				#{continent}
+			</rich:column>
+			<rich:collapsibleSubTable
+				value="#{olympicGamesBean.gamesMap[continent]}" var="game">
+				<rich:column>
+					<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Flag</f:facet>
+					<h:graphicImage value="#{game.flagURI}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Status</f:facet>
+					<h:outputText value="#{game.status}"
+						rendered="#{game.status!='passed'}" />
+				</rich:column>
+			</rich:collapsibleSubTable>
+		</rich:dataTable>
+	</rich:panel>
+	<h3>Sample 2</h3>
+	<rich:panel style="width:650px" header="rich:dataTable complex markup">
+		<rich:dataTable value="#{olympicGamesBean.gamesMapKeys}"
+			var="continent">
+			<f:facet name="header">
+				<rich:columnGroup> 
+					<rich:column rowspan="2" colspan="2"></rich:column>
+					<rich:column colspan="6">Games by Continent</rich:column>
+					<rich:column rowspan="2" colspan="2"></rich:column>
+					<rich:column colspan="3" breakRowBefore="true">Place</rich:column>
+					<rich:column colspan="3">Dates</rich:column>
+				</rich:columnGroup>
+			</f:facet>
+			<rich:column colspan="9">
+				#{continent}
+			</rich:column>
+			<rich:collapsibleSubTable
+				value="#{olympicGamesBean.gamesMap[continent]}" var="game">
+				<rich:column>
+					<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Flag</f:facet>
+					<h:graphicImage value="#{game.flagURI}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Status</f:facet>
+					<h:outputText value="#{game.status}"
+						rendered="#{game.status!='passed'}" />
+				</rich:column>
+			</rich:collapsibleSubTable>
+		</rich:dataTable>
+	</rich:panel>
+	<h3>Sample 2</h3>
+	<rich:panel style="width:650px" header="rich:dataTable complex markup">
+		<rich:dataTable value="#{olympicGamesBean.gamesMapKeys}"
+			var="continent">
+			<f:facet name="header">
+				<rich:columnGroup>
+					<rich:column colspan="9">Games by Continent</rich:column>
+					<rich:column colspan="2" breakRowBefore="true"></rich:column>
+					<rich:column colspan="3">Place</rich:column>
+					<rich:column colspan="3">Dates</rich:column>
+					<rich:column></rich:column>
+				</rich:columnGroup>
+			</f:facet>
+			<rich:column colspan="9">
+				<rich:collapsibleSubTableToggler for="sbtable"/>
+				#{continent}
+			</rich:column>
+			<rich:collapsibleSubTable id="sbtable"
+				value="#{olympicGamesBean.gamesMap[continent]}" var="game">
+				<rich:column>
+					<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Flag</f:facet>
+					<h:graphicImage value="#{game.flagURI}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Status</f:facet>
+					<h:outputText value="#{game.status}"
+						rendered="#{game.status!='passed'}" />
+				</rich:column>
+			</rich:collapsibleSubTable>
+		</rich:dataTable>
+	</rich:panel>	
+</ui:composition>
