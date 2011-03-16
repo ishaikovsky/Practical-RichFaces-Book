@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
+	template="/templates/template.xhtml">
+	<h:form>
+		<rich:panel style="width:250px">
+			<rich:dataTable value="#{olympicGamesBean.games}" var="game">
+				<f:facet name="header">Olympic Games List</f:facet>
+				<a4j:ajax event="onrowclick">
+					<f:setPropertyActionListener value="#{game}"
+						target="#{olympicGamesBean.selectedGame}" />
+				</a4j:ajax>
+				<a4j:ajax event="selectionchange" render="detals"
+					listener="#{olympicGamesBean.showSelectionDetails}" />
+				<rich:column>
+					<f:facet name="header">Season</f:facet>
+					#{game.season}
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Number</f:facet>
+					#{game.number}
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Year</f:facet>
+					#{game.year}
+				</rich:column>
+			</rich:dataTable>
+		</rich:panel>
+		<a4j:outputPanel ajaxRendered="true">
+			<rich:panel style="width:250px"
+				rendered="#{not empty airlinesBean.selected}">
+				<h:graphicImage value="#{sgame.flagURI}" />
+				<b>#{olympicGamesBean.selectedGame.country}, #{olympicGamesBean.selectedGame.city}</b><br/>
+				<i>#{olympicGamesBean.selectedGame.from} #{olympicGamesBean.selectedGame.to}</i>
+			</rich:panel>
+		</a4j:outputPanel>
+	</h:form>
+
+
+	<h3>Sample 1</h3>
+	<rich:panel style="width:650px" header="rich:dataTable sample">
+		<rich:dataTable value="#{olympicGamesBean.games}" var="game">
+			<f:facet name="header">Olympic Games List</f:facet>
+			<rich:column>
+				<f:facet name="header">Flag</f:facet>
+				<h:graphicImage value="#{game.flagURI}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Continent</f:facet>
+				#{game.continent}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Note</f:facet>
+				<h:outputText value="#{game.status}" />
+			</rich:column>
+		</rich:dataTable>
+	</rich:panel>
+	<h3>Sample 2</h3>
+	<style>
+.odd {
+	background-color: #{
+	richSkin
+	.
+	 
+	additionalBackgroundColor
+}
+
+;
+}
+.even {
+	background-color: #{
+	richSkin
+	.
+	 
+	tableSubHeaderBackgroundColor
+}
+
+;
+}
+.cityColumn {
+	font-weight: bold;
+}
+</style>
+	<rich:panel style="width:650px" header="rich:dataTable sample">
+		<rich:dataTable value="#{olympicGamesBean.games}" var="game"
+			rowClasses="odd, even" columnClasses=",cityColumn"
+			onrowmouseover="this.style.fontWeight='bold'"
+			onrowmouseout="this.style.fontWeight='normal'">
+			<f:facet name="header">Olympic Games List</f:facet>
+			<rich:column>
+				<f:facet name="header">Flag</f:facet>
+				<h:graphicImage value="#{game.flagURI}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Continent</f:facet>
+				#{game.continent}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Note</f:facet>
+				<h:outputText value="#{game.status}" />
+			</rich:column>
+		</rich:dataTable>
+	</rich:panel>
+	<h3>Sample 3</h3>
+	<style>
+.odd {
+	background-color: #{ richSkin . additionalBackgroundColor
+}
+
+;
+}
+.even {
+	background-color: #{
+	richSkin
+	.
+	tableSubHeaderBackgroundColor
+}
+
+;
+}
+.cityColumn {
+	font-weight: bold;
+}
+
+.red {
+	background-color: red;
+}
+</style>
+	<rich:panel style="width:650px" header="rich:dataTable sample">
+		<rich:dataTable value="#{olympicGamesBean.games}" var="game"
+			rowClasses="odd, even" columnClasses=",cityColumn"
+			onrowmouseover="this.style.fontWeight='bold'"
+			onrowmouseout="this.style.fontWeight='normal'"
+			rowClass="#{game.status == 'canceled' ? 'red' : ''}">
+			<f:facet name="header">Olympic Games List</f:facet>
+			<rich:column>
+				<f:facet name="header">Flag</f:facet>
+				<h:graphicImage value="#{game.flagURI}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Continent</f:facet>
+				#{game.continent}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Note</f:facet>
+				<h:outputText value="#{game.status}"
+					rendered="#{game.status=='canceled'}" />
+			</rich:column>
+		</rich:dataTable>
+	</rich:panel>
+</ui:composition>

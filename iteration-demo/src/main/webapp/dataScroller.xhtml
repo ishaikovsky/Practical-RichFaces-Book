@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
+	template="/templates/template.xhtml">
+
+	<h:form>
+		<h3>Sample 1</h3>
+		<rich:panel style="width:650px" header="rich:dataTable sample">
+			<rich:dataTable value="#{olympicGamesBean.games}" var="game"
+				rows="10">
+				<f:facet name="header">Olympic Games List</f:facet>
+				<rich:column>
+					<f:facet name="header">Flag</f:facet>
+					<h:graphicImage value="#{game.flagURI}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Continent</f:facet>
+				#{game.continent}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Note</f:facet>
+					<h:outputText value="#{game.status}" />
+				</rich:column>
+				<f:facet name="footer">
+					<rich:dataScroller />
+				</f:facet>
+			</rich:dataTable>
+		</rich:panel>
+	</h:form>
+	<h:form>
+		<h3>Sample 1</h3>
+
+		<rich:panel style="width:650px" header="rich:dataTable sample"
+			id="pnl">
+			<rich:dataScroller for="table" />
+			<rich:dataTable value="#{olympicGamesBean.games}" var="game" rows="5"
+				id="table">
+				<rich:column>
+					<f:facet name="header">Flag</f:facet>
+					<h:graphicImage value="#{game.flagURI}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Continent</f:facet>
+				#{game.continent}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Note</f:facet>
+					<h:outputText value="#{game.status}" />
+				</rich:column>
+			</rich:dataTable>
+			<rich:dataScroller for="table" />
+		</rich:panel>
+	</h:form>
+
+
+	<h:form>
+		<h3>Sample 1</h3>
+
+		<rich:panel style="width:650px" header="rich:dataTable sample"
+			id="pnl">
+			<rich:dataScroller for="table" />
+			<rich:dataTable value="#{olympicGamesBean.games}" var="game" rows="5"
+				id="table">
+				<rich:column>
+					<f:facet name="header">Flag</f:facet>
+					<h:graphicImage value="#{game.flagURI}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Continent</f:facet>
+				#{game.continent}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+				<rich:column>
+					<f:facet name="header">Note</f:facet>
+					<h:outputText value="#{game.status}" />
+				</rich:column>
+				<f:facet name="footer">
+					<rich:dataScroller selectedStyle="font-weight:bold">
+						<f:facet name="first">First</f:facet>
+						<f:facet name="first_disabled">First</f:facet>
+						<f:facet name="last">Last</f:facet>
+						<f:facet name="last_disabled">Last</f:facet>
+						<f:facet name="next">Next</f:facet>
+						<f:facet name="next_disabled">Next</f:facet>
+						<f:facet name="previous">Prev</f:facet>
+						<f:facet name="previous_disabled">Prev</f:facet>
+						<f:facet name="fastforward">FF</f:facet>
+						<f:facet name="fastforward_disabled">FF</f:facet>
+						<f:facet name="fastrewind">FR</f:facet>
+						<f:facet name="fastrewind_disabled">FR</f:facet>
+					</rich:dataScroller>
+				</f:facet>
+			</rich:dataTable>
+
+		</rich:panel>
+	</h:form>
+
+	<h:form>
+		<h3>Sample 1</h3>
+		<rich:panel header="Using rich:datascroller">
+			<rich:list type="definitions" value="#{olympicGamesBean.games}"
+				var="game" rows="5" id="list">
+				<f:facet name="term">
+					<b>#{game.year}</b>
+				</f:facet>
+				#{game.country}, #{game.city}, #{game.from} - #{game.to}
+			</rich:list>
+			<rich:dataScroller for="list" maxPages="4"
+				selectedStyle="font-weight:bold" />
+		</rich:panel>
+	</h:form>
+
+	<h3>Sample 1</h3>
+	<h:form>
+		<rich:panel style="width:560px;"
+			header="rich:dataGrid sample">
+			<rich:dataGrid value="#{olympicGamesBean.games}" var="game"
+				columns="3" elements="9" id="grid">
+				<rich:panel>
+					<h:graphicImage value="#{game.flagURI}" />
+					<b>#{game.country} - #{game.city}</b>
+					<br />
+					<i>#{game.from} - #{game.to}</i>
+				</rich:panel>
+				<f:facet name="footer">
+					<rich:dataScroller for="grid" maxPages="4" />
+				</f:facet>
+			</rich:dataGrid>
+		</rich:panel>
+	</h:form>
+</ui:composition>

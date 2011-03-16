@@ -32,7 +32,7 @@
 		<mime-type>text/css</mime-type>
 	</mime-mapping>
 	<welcome-file-list>
-		<welcome-file>/index.jsf</welcome-file> 
+		<welcome-file>index.jsf</welcome-file> 
 	</welcome-file-list>
 	<login-config>
 		<auth-method>BASIC</auth-method>
