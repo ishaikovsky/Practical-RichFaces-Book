@@ -3,18 +3,152 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
 
 <body>
 <ui:composition template="/templates/template.xhtml">
-	<h:panelGrid columns="1">
-		<h:link style="font-size:14px;" value="rich:dataTable styling" outcome="tableStyling" />
-		<h:link style="font-size:14px;" value="rich:dataTable complex markups" outcome="tableComplexMarkups" />
-		<h:link style="font-size:14px;" value="rich:extendedDataTable usage" outcome="extendedTable" />
-		<h:link style="font-size:14px;" value="rich:lists usage" outcome="lists" />
-		<h:link style="font-size:14px;" value="rich:dataGrid usage" outcome="dataGrid" />
-		<h:link style="font-size:14px;" value="a4j:repeat usage" outcome="repeat" />
-	</h:panelGrid>
+	<h1>Sample 1</h1>
+	<rich:panel style="width:500px;">
+		<f:facet name="header">
+        Continents
+    </f:facet>
+		<rich:tabPanel switchType="client">
+			<rich:tab header="Asia">
+				<p>Asia is the world's largest and most populous continent,
+				located primarily in the eastern and northern hemispheres. It covers
+				8.6% of the Earth's total surface area (or 29.9% of its land area)
+				and with approximately 4 billion people, it hosts 60% of the world's
+				current human population.</p>
+			</rich:tab>
+			<rich:tab header="Africa">
+        ...
+        </rich:tab>
+			<rich:tab header="North America">
+        ...
+        </rich:tab>
+			<rich:tab header="South America">
+        ...
+        </rich:tab>
+			<rich:tab header="Antarctica">
+        ...
+        </rich:tab>
+			<rich:tab header="Europe">
+        ...
+        </rich:tab>
+			<rich:tab header="Australia">
+        ...
+        </rich:tab>
+		</rich:tabPanel>
+	</rich:panel>
+	<h1>Sample 2</h1>
+<style>
+.sam2.rf-p{
+
+   color: red;
+   border-style: dotted;
+}
+.sam2 .rf-p-b {
+    font-style: italic;
+    font-weight: bold;  
+}
+</style> 
+	<rich:panel id="panel" style="width:300px">
+		<f:facet name="header">
+	Using skins is so cool!
+   </f:facet>
+   I can easily change how my application looks
+</rich:panel>
+<br/>
+<rich:panel id="panel2" style="width:300px" styleClass="sam2">
+		<f:facet name="header">
+	Using skins is so cool!
+   </f:facet>
+   I can easily change how my application looks
+</rich:panel>
+
+	<h1>Sample 3</h1>
+<style>
+
+.myClass {
+   font-style: italic;
+} 
+</style>
+<rich:panel id="panel3" style="width:300px" styleClass="myClass">
+   <f:facet name="header">
+      Using skins is so cool...
+   </f:facet>
+   I can easily change how my application looks
+</rich:panel>
+
+<h1>Sample 4</h1>
+<h:panelGrid columns="1">
+          <h:outputText value="Favorite city: "/>
+          <h:inputText value="#{geography.city}"/>
+ </h:panelGrid>
+ <h:commandButton action="next" value="Submit"/>
+<h1>Sample 5</h1>
+<div class="rfs-ctn">
+   <h:panelGrid columns="1" >
+      <h:outputText value="Favorite city: " />
+      <h:inputText value="#{geography.city}" />
+      <h:commandButton action="next" value="Submit" />
+   </h:panelGrid>
+</div>
+<h1>Sample 6</h1>
+<h:panelGrid columns="1" styleClass=" rfs-ctn">
+   <h:outputText value="Favorite city: " />
+   <h:inputText value="#{geography.city}" />
+   <h:commandButton action="next" value="Submit" />
+   <input type="button" value="HTML Button"/>
+</h:panelGrid>
+
+
+<h1>Sample 7</h1>
+
+<h:panelGrid columns="1">
+    <h:outputText value="Favorite city: " styleClass="rfs-txt-general"/>
+    <h:inputText value="#{geography.city}" styleClass="rfs-txt-general"/>
+    <h:commandButton action="next" value="Submit" styleClass="rfs-btn"/>
+</h:panelGrid>
+<h1>Sample 8</h1>
+	<rich:panel style="width:500px;">
+		<f:facet name="header">
+        Continents
+    </f:facet>
+		<rich:tabPanel switchType="client">
+			<rich:tab header="Asia">
+				<p>Asia is the world's largest and most populous continent,
+				located primarily in the eastern and northern hemispheres. It covers
+				8.6% of the Earth's total surface area (or 29.9% of its land area)
+				and with approximately 4 billion people, it hosts 60% of the world's
+				current human population.</p>
+			</rich:tab>
+			<rich:tab header="Africa">
+        ...
+        </rich:tab>
+			<rich:tab header="North America">
+        ...
+        </rich:tab>
+			<rich:tab header="South America">
+        ...
+        </rich:tab>
+			<rich:tab header="Antarctica">
+        ...
+        </rich:tab>
+			<rich:tab header="Europe">
+        ...
+        </rich:tab>
+			<rich:tab header="Australia">
+        ...
+        </rich:tab>
+		</rich:tabPanel>
+	</rich:panel>
+<h:commandButton action="next" value="Next page -
+    I want to learn about world oceans!"/>
+<h:commandButton action="next" value="Next page -
+    I want to learn about world oceans!(Skinned)" style="background-color:#{richSkin.tabBackgroundColor}"/>
+    
 </ui:composition>
 </body>
 </html>

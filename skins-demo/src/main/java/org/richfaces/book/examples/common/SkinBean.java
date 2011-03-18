@@ -26,7 +26,9 @@ public class SkinBean implements Serializable {
 	@ManagedProperty(value = "blueSky")
 	private String skin;
 	private List<String> skins;
-
+	private boolean standardSkinningEnabled = true; 
+	private boolean skinningClassesEnabled = true;
+	
 	public SkinBean() {
 		skins = new ArrayList<String>();
 		skins.add("blueSky");
@@ -35,7 +37,8 @@ public class SkinBean implements Serializable {
 		skins.add("emeraldTown");
 		skins.add("japanCherry");
 		skins.add("ruby");
-		skins.add("wine");
+        skins.add("wine");
+        skins.add("newyork");
 	}
 
 	private String getViewParameter(String name) {
@@ -65,4 +68,20 @@ public class SkinBean implements Serializable {
 		return skins;
 	}
 
+	public boolean isStandardSkinningEnabled() {
+        return standardSkinningEnabled;
+    }
+	
+	public void setStandardSkinningEnabled(boolean standardSkinningEnabled) {
+        this.standardSkinningEnabled = standardSkinningEnabled;
+    }
+	
+	public boolean isSkinningClassesEnabled() {
+        return skinningClassesEnabled;
+    }
+	
+	public void setSkinningClassesEnabled(boolean skinningClassesEnabled) {
+        this.skinningClassesEnabled = skinningClassesEnabled;
+    }
+	
 }

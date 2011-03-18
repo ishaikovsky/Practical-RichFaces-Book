@@ -15,6 +15,14 @@
 				</h:link>
 				<h:outputText value = " | " rendered="#{not iterStatus.last}" />
 			</a4j:repeat>
+			<h:form>
+			<h:panelGrid columns="4">
+				<h:outputText value="Standard Skinning:" />
+				<h:selectBooleanCheckbox value="#{skinBean.standardSkinningEnabled}" onclick="submit()"/>
+				<h:outputText value="Skinning classes:" />
+				<h:selectBooleanCheckbox value="#{skinBean.skinningClassesEnabled}" onclick="submit()"/>
+			</h:panelGrid>
+			</h:form>
 		</rich:panel>
 	</ui:composition>
 
