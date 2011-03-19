@@ -405,16 +405,6 @@
 		<toDate>8/12/1984</toDate>
 	</game>
 	<game>
-		<city>Calgary</city>
-		<country>Canada</country>
-		<continent>North America</continent>
-		<flag>canada</flag>
-		<number>15</number>
-		<season>Winter</season>
-		<fromDate>2/13/1988</fromDate>
-		<toDate>2/28/1988</toDate>
-	</game>
-	<game>
 		<city>Seoul</city>
 		<country>South Korea</country>
 		<continent>Asia</continent>
@@ -423,6 +413,16 @@
 		<season>Summer</season>
 		<fromDate>9/17/1988</fromDate>
 		<toDate>10/2/1988</toDate>
+	</game>
+	<game>
+		<city>Calgary</city>
+		<country>Canada</country>
+		<continent>North America</continent>
+		<flag>canada</flag>
+		<number>15</number>
+		<season>Winter</season>
+		<fromDate>2/13/1988</fromDate>
+		<toDate>2/28/1988</toDate>
 	</game>
 	<game>
 		<city>Albertville</city>
