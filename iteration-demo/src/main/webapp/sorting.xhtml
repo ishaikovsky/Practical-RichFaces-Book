@@ -27,6 +27,8 @@
 							action="#{sortingBean.sort}">
 							<a4j:param name="sortProperty" value="city" />
 						</a4j:commandLink>
+						<h:outputText value="(a)" rendered="#{sortingBean.sortOrders['city']=='ascending'}" style="font-weight:bold"/>
+						<h:outputText value="(d)" rendered="#{sortingBean.sortOrders['city']=='descending'}" style="font-weight:bold"/>
 					</f:facet>
 				#{game.city}
 			</rich:column>
@@ -37,6 +39,8 @@
 							action="#{sortingBean.sort}">
 							<a4j:param name="sortProperty" value="country" />
 						</a4j:commandLink>
+						<h:outputText value="(a)" rendered="#{sortingBean.sortOrders['country']=='ascending'}" style="font-weight:bold"/>
+						<h:outputText value="(d)" rendered="#{sortingBean.sortOrders['country']=='descending'}" style="font-weight:bold"/>
 					</f:facet>				
 				#{game.country}
 			</rich:column>
@@ -48,14 +52,15 @@
 					<f:facet name="header">Number</f:facet>
 				#{game.number}
 			</rich:column>
-				<rich:column
-					sortOrder="#{sortingBean.sortOrders['year']}"
+				<rich:column sortOrder="#{sortingBean.sortOrders['year']}"
 					comparator="#{sortingBean.yearComparator}">
 					<f:facet name="header">
 						<a4j:commandLink value="Year" render="table"
 							action="#{sortingBean.sort}">
 							<a4j:param name="sortProperty" value="year" />
 						</a4j:commandLink>
+						<h:outputText value="(a)" rendered="#{sortingBean.sortOrders['year']=='ascending'}" style="font-weight:bold"/>
+						<h:outputText value="(d)" rendered="#{sortingBean.sortOrders['year']=='descending'}" style="font-weight:bold"/>
 					</f:facet>	
 				#{game.year}
 			</rich:column>
@@ -70,10 +75,9 @@
 			</rich:dataTable>
 		</rich:panel>
 	</h:form>
-	
+
 	<h3>Sample 2</h3>
 	<h:form>
-		<a4j:commandButton value="Reset Sorting" render="table2" action="#{olympicGamesBean.resetSorting}"/>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
 			<rich:dataTable value="#{olympicGamesBean.games}" var="game"
 				id="table2" rows="10" sortPriority="#{sortingBean.sortPriorities}">
@@ -132,8 +136,11 @@
 				#{game.to}
 			</rich:column>
 			</rich:dataTable>
+			<a4j:commandButton value="Reset Sorting" render="table2"
+				action="#{olympicGamesBean.resetSorting}" />
+
 		</rich:panel>
-	</h:form>	
+	</h:form>
 	<h3>Sample 3</h3>
 	<h:form>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
@@ -150,21 +157,21 @@
 					<f:facet name="header">
 						<h:commandLink value="City">
 							<rich:componentControl target="table3" operation="sort">
-								<f:param name="column" value="city"/>
-								<f:param value=""/> 
-								<f:param name="reset" value="true"/>
+								<f:param name="column" value="city" />
+								<f:param value="" />
+								<f:param name="reset" value="true" />
 							</rich:componentControl>
 						</h:commandLink>
 					</f:facet>
 				#{game.city} 
-			</rich:column> 
+			</rich:column>
 				<rich:column sortBy="#{game.country}" id="country">
 					<f:facet name="header">
 						<h:commandLink value="Country">
 							<rich:componentControl target="table3" operation="sort">
-								<f:param name="direction" value="country"/>
-								<f:param value=""/>
-								<f:param name="reset" value="true"/>
+								<f:param name="direction" value="country" />
+								<f:param value="" />
+								<f:param name="reset" value="true" />
 							</rich:componentControl>
 						</h:commandLink>
 					</f:facet>				
@@ -182,7 +189,7 @@
 					<f:facet name="header">
 						<h:commandLink value="Year">
 							<rich:componentControl target="table3" operation="sort">
-								<f:param name="column" value="year"/>
+								<f:param name="column" value="year" />
 							</rich:componentControl>
 						</h:commandLink>
 					</f:facet>	
@@ -198,5 +205,5 @@
 			</rich:column>
 			</rich:dataTable>
 		</rich:panel>
-	</h:form>	
+	</h:form>
 </ui:composition>

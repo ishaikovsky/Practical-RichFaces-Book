@@ -6,13 +6,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/template.xhtml"
-    xmlns:fn="http://java.sun.com/jstl/functions">
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 	<h3>Sample 1</h3>
 	<h:form>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
 			<rich:dataTable value="#{olympicGamesBean.games}" var="game"
-				id="table" rows="10">
+				id="table">
 				<f:facet name="header">Olympic Games List</f:facet>
 				<rich:column>
 					<f:facet name="header">
@@ -21,179 +21,81 @@
 					<h:graphicImage value="#{game.flagURI}" />
 				</rich:column>
 				<rich:column
-					filterExpression="#{fn:startsWith(game.city, filteringBean.cityName)}">
+					filterExpression="#{fn:startsWith(game.city, filteringBean.cityFilterString)}">
 					<f:facet name="header">
-						<h:inputText value="#{game.city}">
+						<h:inputText value="#{filteringBean.cityFilterString}">
 							<a4j:ajax render="table@body" />
 						</h:inputText>
 					</f:facet>
 					#{game.city}
-			</rich:column>
-				<rich:column filterExpression="#{game.country == filteringBean.cityName}">
+				</rich:column>
+				<rich:column
+					filterExpression="#{fn:containsIgnoreCase(game.country, filteringBean.countryFilterString)}">
 					<f:facet name="header">
-						<a4j:commandLink value="Country" render="table"
-							action="#{sortingBean.sort}">
-							<a4j:param name="sortProperty" value="country" />
-						</a4j:commandLink>
+						<h:inputText value="#{filteringBean.countryFilterString}">
+							<a4j:ajax render="table@body" />
+						</h:inputText>
 					</f:facet>				
 				#{game.country}
-			</rich:column>
-				<rich:column sortBy="#{game.season}">
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">Season</f:facet>
-				#{game.season}
-			</rich:column>
-				<rich:column sortBy="#{game.number}">
-					<f:facet name="header">Number</f:facet>
-				#{game.number}
-			</rich:column>
-				<rich:column sortOrder="#{sortingBean.sortOrders['year']}"
-					comparator="#{sortingBean.yearComparator}">
+					#{game.season}
+				</rich:column>
+				<rich:column filter="#{filteringBean.centuryFilter}">
 					<f:facet name="header">
-						<a4j:commandLink value="Year" render="table"
-							action="#{sortingBean.sort}">
-							<a4j:param name="sortProperty" value="year" />
-						</a4j:commandLink>
+						<h:selectOneMenu value="#{filteringBean.centuryFilterNumber}">
+							<f:selectItem itemLabel="" itemValue="0" />
+							<f:selectItem itemLabel="19th century" itemValue="19" />
+							<f:selectItem itemLabel="20th century" itemValue="20" />
+							<f:selectItem itemLabel="21st century" itemValue="21" />
+							<a4j:ajax render="table@body" />
+						</h:selectOneMenu>
 					</f:facet>	
-				#{game.year}
-			</rich:column>
-				<rich:column>
-					<f:facet name="header">From</f:facet>
-				#{game.from}
-			</rich:column>
-				<rich:column>
-					<f:facet name="header">To</f:facet>
-				#{game.to}
-			</rich:column>
+					#{game.year}
+				</rich:column>
 			</rich:dataTable>
 		</rich:panel>
 	</h:form>
-
-	<h3>Sample 2</h3>
-	<h:form>
-		<a4j:commandButton value="Reset Sorting" render="table2"
-			action="#{olympicGamesBean.resetSorting}" />
-		<rich:panel style="width:650px" header="rich:dataTable sample">
-			<rich:dataTable value="#{olympicGamesBean.games}" var="game"
-				id="table2" rows="10" sortPriority="#{sortingBean.sortPriorities}">
-				<f:facet name="header">Olympic Games List</f:facet>
-				<rich:column>
-					<f:facet name="header">
-						Flag
-					</f:facet>
-					<h:graphicImage value="#{game.flagURI}" />
-				</rich:column>
-				<rich:column sortBy="#{game.city}" id="city"
-					sortOrder="#{sortingBean.sortOrdersMultiple['city']}">
-					<f:facet name="header">
-						<a4j:commandLink value="City" render="table2"
-							action="#{sortingBean.sortMultiple}">
-							<a4j:param name="sortProperty" value="city" />
-						</a4j:commandLink>
-					</f:facet>
-				#{game.city}
-			</rich:column>
-				<rich:column sortBy="#{game.country}" id="country"
-					sortOrder="#{sortingBean.sortOrdersMultiple['country']}">
-					<f:facet name="header">
-						<a4j:commandLink value="Country" render="table2"
-							action="#{sortingBean.sortMultiple}">
-							<a4j:param name="sortProperty" value="country" />
-						</a4j:commandLink>
-					</f:facet>				
-				#{game.country}
-			</rich:column>
-				<rich:column sortBy="#{game.season}">
-					<f:facet name="header">Season</f:facet>
-				#{game.season}
-			</rich:column>
-				<rich:column sortBy="#{game.number}">
-					<f:facet name="header">Number</f:facet>
-				#{game.number}
-			</rich:column>
-				<rich:column id="year"
-					sortOrder="#{sortingBean.sortOrdersMultiple['year']}"
-					comparator="#{sortingBean.yearComparator}">
-					<f:facet name="header">
-						<a4j:commandLink value="Year" render="table2"
-							action="#{sortingBean.sortMultiple}">
-							<a4j:param name="sortProperty" value="year" />
-						</a4j:commandLink>
-					</f:facet>	
-				#{game.year}
-			</rich:column>
-				<rich:column>
-					<f:facet name="header">From</f:facet>
-				#{game.from}
-			</rich:column>
-				<rich:column>
-					<f:facet name="header">To</f:facet>
-				#{game.to}
-			</rich:column>
-			</rich:dataTable>
-		</rich:panel>
-	</h:form>
-	<h3>Sample 3</h3>
+	<h3>Sample 1</h3>
 	<h:form>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
+			<a4j:repeat value="#{filteringBean.continents}" var="cont">
+				<h:commandLink value="#{cont}" onclick="#{rich:component('table2')}.filter('contCol', '#{cont}'); return false;"/>|
+			</a4j:repeat>
+			<hr/>
+			<h:commandLink value="All available" onclick="#{rich:component('table2')}.filter('centCol', 0); return false;"/>|
+			<h:commandLink value="19th century" onclick="#{rich:component('table2')}.filter('centCol', 19); return false;"/>|
+			<h:commandLink value="20th century" onclick="#{rich:component('table2')}.filter('centCol', 20); return false;"/>|
+			<h:commandLink value="21th century" onclick="#{rich:component('table2')}.filter('centCol', 21); return false;"/>|
 			<rich:dataTable value="#{olympicGamesBean.games}" var="game"
-				id="table3" rows="10">
+				id="table2">
 				<f:facet name="header">Olympic Games List</f:facet>
 				<rich:column>
-					<f:facet name="header">
-						Flag
-					</f:facet>
+					<f:facet name="header">Flag</f:facet>
 					<h:graphicImage value="#{game.flagURI}" />
 				</rich:column>
-				<rich:column sortBy="#{game.city}" id="city">
-					<f:facet name="header">
-						<h:commandLink value="City">
-							<rich:componentControl target="table3" operation="sort">
-								<f:param name="column" value="city" />
-								<f:param value="" />
-								<f:param name="reset" value="true" />
-							</rich:componentControl>
-						</h:commandLink>
-					</f:facet>
-				#{game.city} 
-			</rich:column>
-				<rich:column sortBy="#{game.country}" id="country">
-					<f:facet name="header">
-						<h:commandLink value="Country">
-							<rich:componentControl target="table3" operation="sort">
-								<f:param name="direction" value="country" />
-								<f:param value="" />
-								<f:param name="reset" value="true" />
-							</rich:componentControl>
-						</h:commandLink>
-					</f:facet>				
+				<rich:column>
+					<f:facet name="header">City</f:facet>
+					#{game.city}
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">Country</f:facet>				
 				#{game.country}
-			</rich:column>
-				<rich:column sortBy="#{game.season}">
+				</rich:column>
+				<rich:column id="contCol"
+					filterExpression="#{(filteringBean.continentFilterString=='')||(game.continent==filteringBean.continentFilterString)}">
+					<f:facet name="header">Continent</f:facet>				
+				#{game.continent}
+				</rich:column>
+				<rich:column>
 					<f:facet name="header">Season</f:facet>
-				#{game.season}
-			</rich:column>
-				<rich:column sortBy="#{game.number}">
-					<f:facet name="header">Number</f:facet>
-				#{game.number}
-			</rich:column>
-				<rich:column comparator="#{sortingBean.yearComparator}" id="year">
-					<f:facet name="header">
-						<h:commandLink value="Year">
-							<rich:componentControl target="table3" operation="sort">
-								<f:param name="column" value="year" />
-							</rich:componentControl>
-						</h:commandLink>
-					</f:facet>	
-				#{game.year}
-			</rich:column>
-				<rich:column>
-					<f:facet name="header">From</f:facet>
-				#{game.from}
-			</rich:column>
-				<rich:column>
-					<f:facet name="header">To</f:facet>
-				#{game.to}
-			</rich:column>
+					#{game.season}
+				</rich:column>
+				<rich:column filter="#{filteringBean.centuryFilter}" id="centCol">
+					<f:facet name="header">Year</f:facet>	
+					#{game.year}
+				</rich:column>
 			</rich:dataTable>
 		</rich:panel>
 	</h:form>
