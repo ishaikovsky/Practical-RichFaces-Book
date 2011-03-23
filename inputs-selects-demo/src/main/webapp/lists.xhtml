@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
+	template="/templates/template.xhtml">
+
+
+	<h3>Sample 1</h3>
+	<rich:panel style="width:280px" header="rich:list sample">
+		<rich:list value="#{olympicGamesBean.games}" var="game">
+			#{game.year}: #{game.country}, #{game.city} 
+		</rich:list>
+	</rich:panel>
+	<h3>Sample 2</h3>
+	<rich:panel style="width:280px" header="rich:list sample">
+		<rich:list type="ordered" value="#{olympicGamesBean.games}" var="game">
+			#{game.year}: #{game.country}, #{game.city} 
+		</rich:list>
+	</rich:panel>
+	<h3>Sample 3</h3>
+	<rich:panel style="width:280px" header="rich:list sample">
+		<rich:list type="definitions" value="#{olympicGamesBean.games}" var="game">
+			<f:facet name="term"><b>#{game.year}</b></f:facet>
+			#{game.country}, #{game.city}, #{game.from} - #{game.to} 
+		</rich:list>
+	</rich:panel>
+</ui:composition>
