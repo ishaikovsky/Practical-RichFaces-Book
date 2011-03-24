@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+
+
+	<h3>Sample 1</h3>
+	<rich:panel header="Using rich:calendar">
+		<rich:calendar value="#{calendarBean.today}" datePattern="dd/M/yy" />
+	</rich:panel>
+	<h3>Sample 2</h3>
+	<rich:panel header="Using rich:calendar with time selection">
+		<rich:calendar value="#{calendarBean.today}"
+			datePattern="dd/M/yy HH:mm:ss" showApplyButton="true" />
+	</rich:panel>
+	<h3>Sample 3</h3>
+	<rich:panel header="Using rich:calendar inline">
+		<rich:calendar value="#{calendarBean.today}" popup="false"
+			datePattern="dd/M/yy HH:mm:ss" />
+	</rich:panel>
+	<h3>Sample 3</h3>
+	<rich:panel header="Using rich:calendar in Italian locale">
+		<rich:calendar datePattern="dd/M/yy hh:mm:ss" locale="it" />
+
+	</rich:panel>
+
+	<h3>Sample 5</h3>
+	<rich:panel header="Using rich:calendar with dataModel">
+		<style>
+.bdc {
+	background-color: gray;
+}
+
+.wdc {
+	font-weight: bold;
+	font-style: italic;
+}
+</style>
+		<h:form>
+			<rich:calendar mode="ajax" popup="false" dataModel="#{calendarModel}"
+				locale="en" />
+		</h:form>
+	</rich:panel>
+
+	<h3>Sample 6</h3>
+	<rich:panel header="Using rich:calendar client customizations">
+		<style>
+.everyThirdDay {
+	background-color: gray;
+}
+
+.weekendBold {
+	font-weight: bold;
+	font-style: italic;
+}
+</style>
+		<script type="text/javascript">
+      var curDt = new Date();
+      function disablementFunction(day){
+         if (day.isWeekend) return false;
+         if (curDt==undefined){
+            curDt = day.date.getDate();
+         }
+         if (curDt.getTime() - day.date.getTime() &lt; 0) return true; else return false;  
+      }
+      function disabledClassesProv(day){
+         if (curDt.getTime() - day.date.getTime() &gt;= 0) return 'rf-cal-boundary-day';
+         var res = '';
+         if (day.isWeekend) res+='weekendBold ';
+         if (day.day%3==0) res+='everyThirdDay';
+         return res;
+      }
+</script>
+		<rich:calendar dayDisableFunction="disablementFunction"
+			dayClassFunction="disabledClassesProv" />
+	</rich:panel>
+
+<rich:panel header="Using rich:calendar API">
+<h:panelGrid columns="2"> 
+From: 
+<rich:calendar locale="en" id="c1"
+onchange="#{rich:component('c2')}.setValue(#{rich:component('c1')}.getValue())" />
+To: 
+<rich:calendar locale="en" id="c2" />
+	</h:panelGrid>
+</rich:panel>
+
+</ui:composition>

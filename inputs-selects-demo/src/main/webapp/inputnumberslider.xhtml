@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+
+
+	<h3>Sample 1</h3>
+	<rich:panel header="Using rich:inputNumberSlider">
+		<h:panelGrid cellpadding="10">
+			<rich:inputNumberSlider value="#{inputNumberBean.numberOfItems}" />
+
+			<rich:inputNumberSlider value="#{inputNumberBean.numberOfItems}"
+				minValue="0" maxValue="500" step="2" />
+
+			<rich:inputNumberSlider value="#{inputNumberBean.numberOfItems}"
+				minValue="0" maxValue="500" step="2" enableManualInput="false" />
+
+			<rich:inputNumberSlider value="#{inputNumberBean.numberOfItems}"
+				minValue="0" maxValue="500" step="2" inputPosition="left" />
+
+			<rich:inputNumberSlider value="#{inputNumberBean.numberOfItems}"
+				minValue="0" maxValue="500" step="2" showInput="false" />
+			<rich:inputNumberSlider value="300" minValue="0" maxValue="500"
+				step="2" showArrows="true" />
+			<rich:inputNumberSlider value="#{inputNumberBean.numberOfItems}" minValue="0" maxValue="500"
+				step="2" disabled="true" />
+
+
+		</h:panelGrid>
+	</rich:panel>
+
+</ui:composition>
