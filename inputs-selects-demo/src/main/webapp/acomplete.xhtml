@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+
+
+	<h3>Sample 1</h3>
+	<rich:panel header="Using rich:autocomplete" style="width:200px">
+		<h:form>
+			<rich:autocomplete autocompleteList="#{autocompleteBean.suggestions}"
+				mode="lazyClient" />
+		</h:form>
+	</rich:panel>
+
+
+	<h3>Sample 2</h3>
+	<rich:panel header="Using rich:autocomplete" style="width:200px">
+		<h:form>
+			<rich:autocomplete
+				autocompleteMethod="#{autocompleteBean.autocomplete}"
+				mode="cachedAjax" tokens="," minChars="2" />
+		</h:form>
+	</rich:panel>
+
+
+	<h3>Sample 3</h3>
+	<rich:panel header="Using rich:autocomplete" style="width:250px">
+		<h:form>
+			<rich:autocomplete autocompleteList="#{autocompleteBean.suggestions}"
+				mode="lazyClient" showButton="true" selectFirst="true" />
+		</h:form>
+	</rich:panel>
+
+	<h3>Sample 4</h3>
+	<rich:panel header="Using rich:autocomplete" style="width:250px">
+		<h:form>
+			<rich:autocomplete autocompleteList="#{autocompleteBean.suggestions}"
+				mode="lazyClient" showButton="true" autofill="true" />
+		</h:form>
+	</rich:panel>
+	<h3>Sample 5</h3>
+
+	<script>
+function customFilter(subString, value){
+   if(subString.length>=1) {
+      if(value.indexOf(subString)!=-1) 
+         return true;
+      else 
+         return false;
+   }    
+};
+</script>
+
+	<rich:panel header="Using rich:autocomplete" style="width:250px">
+
+		<h:form>
+			<rich:autocomplete autocompleteList="#{autocompleteBean.suggestions}"
+				mode="lazyClient" clientFilterFunction="customFilter" />
+		</h:form>
+	</rich:panel>
+<style>
+	.rf-au-tbl{
+		width:100%
+		<!--temp fix for RF issue, should not be needed soon-->
+	}
+</style>
+	<h3>Sample 6</h3>
+
+	<rich:panel header="Using rich:autocomplete" style="width:250px">
+		<h:form>
+			<rich:autocomplete layout="table"
+				autocompleteMethod="#{statesSuggestionBean.suggest}" var="state"
+				fetchValue="#{state.name}">
+				<rich:column>
+					<h:outputText value="#{state.name}" />
+				</rich:column>
+				<rich:column>
+					<h:outputText value="#{state.capital}" />
+				</rich:column>
+				<rich:column>
+					<h:graphicImage value="#{state.flagImage}" />
+				</rich:column>
+			</rich:autocomplete>
+		</h:form>
+	</rich:panel>
+</ui:composition>

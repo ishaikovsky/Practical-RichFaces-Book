@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
+	template="/templates/template.xhtml">
+
+
+	<h3>Sample 1</h3>
+
+	<rich:panel header="Using rich:inplaceInput" style="width:250px;">
+		<h:form>
+			<h:panelGrid columns="1">
+				<rich:inplaceInput value="#{inplaceInputBean.name}"
+					defaultLabel="Click to edit name" />
+				<rich:inplaceInput value="#{inplaceInputBean.email}"
+					defaultLabel="Click to edit email" />
+			</h:panelGrid>
+		</h:form>
+	</rich:panel>
+	<h3>Sample 2</h3>
+	<rich:panel header="Using rich:inplaceInput" style="width:250px;">
+		<h:form>
+			<h:panelGrid columns="1">
+				<rich:inplaceInput value="#{inplaceInputBean.name}"
+					defaultLabel="Click to edit name" showControls="true" />
+				<rich:inplaceInput value="#{inplaceInputBean.email}"
+					defaultLabel="Click to edit email" showControls="true" />
+			</h:panelGrid>
+		</h:form>
+	</rich:panel>
+
+	<h3>Sample 3</h3>
+	<h:form>
+		<rich:panel header="Using rich:inplaceInput" style="width:250px;">
+			<h:panelGrid columns="1">
+				<rich:inplaceInput value="#{inplaceInputBean.name}"
+					defaultLabel="Double click to edit name" editEvent="dblclick">
+					<a4j:ajax event="change" render="out" />
+				</rich:inplaceInput>
+				<h:outputText value="#{inplaceInputBean.name}" id="out" />
+			</h:panelGrid>
+		</rich:panel>
+	</h:form>
+	<h3>Sample 5</h3>
+	<rich:panel header="Using rich:inplaceInput" style="width:250px;">
+		<rich:inplaceInput value="#{inplaceInputBean.name}" saveOnBlur="false"
+			showControls="true" defaultLabel="Click to edit name" />
+	</rich:panel>
+	<h3>Sample 5</h3>
+	<rich:panel header="Using rich:inplaceInput" style="width:250px;">
+		<h:panelGrid>
+			<rich:inplaceInput defaultLabel="Enter your name" id="name"
+				onchange="#{rich:component('nickname')}.
+          setValue(#{rich:component('name')}.getValue());" />
+			<rich:inplaceInput defaultLabel="Enter your nickname" id="nickname" />
+		</h:panelGrid>
+	</rich:panel>
+</ui:composition>

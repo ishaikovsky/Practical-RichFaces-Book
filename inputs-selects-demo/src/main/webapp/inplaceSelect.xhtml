@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+
+
+	<h3>Sample 1</h3>
+	<rich:panel header="Using rich:inplaceSelect" style="width:200px">
+		<rich:inplaceSelect value="#{inplaceSelectBean.fruit}"
+			defaultLabel="Select fruit">
+			<f:selectItem itemValue="1" itemLabel="Banana" />
+			<f:selectItem itemValue="2" itemLabel="Cranberry" />
+			<f:selectItem itemValue="3" itemLabel="Blueberry" />
+			<f:selectItem itemValue="4" itemLabel="Orange" />
+			<f:selectItem itemValue="5" itemLabel="Apple" />
+			<f:selectItem itemValue="6" itemLabel="Strawberry" />
+		</rich:inplaceSelect>
+	</rich:panel>
+
+	<h3>Sample 2</h3>
+	<rich:panel header="Using rich:inplaceSelect" style="width:200px">
+		<rich:inplaceSelect value="#{inplaceSelectBean.fruit}"
+			inputWidth="100px" defaultLabel="Select fruit" showControls="true">
+			<f:selectItem itemValue="1" itemLabel="Banana" />
+			<f:selectItem itemValue="2" itemLabel="Cranberry" />
+			<f:selectItem itemValue="3" itemLabel="Blueberry" />
+			<f:selectItem itemValue="4" itemLabel="Orange" />
+			<f:selectItem itemValue="5" itemLabel="Apple" />
+			<f:selectItem itemValue="6" itemLabel="Strawberry" />
+		</rich:inplaceSelect>
+	</rich:panel>
+	
+	<h3>Sample 3</h3>
+	<rich:panel header="Using rich:inplaceSelect" style="width:200px">
+		<h:form>
+			<h:panelGrid>
+				<rich:inplaceSelect
+					defaultLabel=" Double click to select items type"
+					value="#{inplaceSelectBean2.currentType}"
+					valueChangeListener="#{inplaceSelectBean2.valueChanged}"
+					editEvent="dblclick">
+					<f:selectItems value="#{inplaceSelectBean2.firstList}" />
+					<a4j:ajax event="change" render="second" execute="@this" />
+				</rich:inplaceSelect>
+				<a4j:outputPanel id="second" layout="block">
+					<rich:inplaceSelect value="#{inplaceSelectBean2.currentType}"
+						defaultLabel="Click to select item"
+						rendered="#{not empty inplaceSelectBean2.currentType}">
+						<f:selectItems value="#{inplaceSelectBean2.secondList}" />
+					</rich:inplaceSelect>
+				</a4j:outputPanel>
+			</h:panelGrid>
+		</h:form>
+	</rich:panel>
+</ui:composition>
