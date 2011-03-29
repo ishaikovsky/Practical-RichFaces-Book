@@ -52,6 +52,7 @@ function customFilter(subString, value){
       else 
          return false;
    }    
+   return true;
 };
 </script>
 
@@ -74,7 +75,7 @@ function customFilter(subString, value){
 		<h:form>
 			<rich:autocomplete layout="table"
 				autocompleteMethod="#{statesSuggestionBean.suggest}" var="state"
-				fetchValue="#{state.name}">
+				>
 				<rich:column>
 					<h:outputText value="#{state.name}" />
 				</rich:column>
