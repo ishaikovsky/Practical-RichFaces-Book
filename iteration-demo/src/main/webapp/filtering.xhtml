@@ -7,7 +7,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/template.xhtml"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-
 	<h3>Sample 1</h3>
 	<h:form>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
@@ -54,22 +53,50 @@
 					</f:facet>	
 					#{game.year}
 				</rich:column>
+				<f:facet name="noData">
+					No relevant data found
+				</f:facet>
 			</rich:dataTable>
 		</rich:panel>
 	</h:form>
 	<h3>Sample 1</h3>
 	<h:form>
+		<style>
+.bold {
+	font-weight: bold;
+}
+</style>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
-			<a4j:repeat value="#{filteringBean.continents}" var="cont">
-				<h:commandLink value="#{cont}" onclick="#{rich:component('table2')}.filter('contCol', '#{cont}'); return false;"/>|
+			<a4j:outputPanel ajaxRendered="true" layout="block">
+				<a4j:repeat value="#{filteringBean.continents}" var="cont">
+					<h:outputLink value="#" styleClass="#{filteringBean.continentFilterString==cont ? 'bold':''}">
+						#{cont}
+						<rich:componentControl target="table2" operation="filter" event="click">
+							<f:param value="contCol"/>
+							<f:param value="#{cont}"/>
+						</rich:componentControl>
+						</h:outputLink> |
 			</a4j:repeat>
-			<hr/>
-			<h:commandLink value="All available" onclick="#{rich:component('table2')}.filter('centCol', 0); return false;"/>|
-			<h:commandLink value="19th century" onclick="#{rich:component('table2')}.filter('centCol', 19); return false;"/>|
-			<h:commandLink value="20th century" onclick="#{rich:component('table2')}.filter('centCol', 20); return false;"/>|
-			<h:commandLink value="21th century" onclick="#{rich:component('table2')}.filter('centCol', 21); return false;"/>|
+			</a4j:outputPanel>
+			<a4j:outputPanel ajaxRendered="true" layout="block">
+				<h:outputLink value="#"
+					styleClass="#{filteringBean.centuryFilterNumber==0 ? 'bold':''}"
+					onclick="#{rich:component('table2')}.filter('centCol', 0); return false;">All available</h:outputLink> |
+			<h:outputLink value="#"
+					styleClass="#{filteringBean.centuryFilterNumber==19 ? 'bold':''}"
+					onclick="#{rich:component('table2')}.filter('centCol', 19); return false;">19th century</h:outputLink> |
+			<h:outputLink value="#"
+					styleClass="#{filteringBean.centuryFilterNumber==20 ? 'bold':''}"
+					onclick="#{rich:component('table2')}.filter('centCol', 20); return false;">20th century</h:outputLink> |
+			<h:outputLink value="#"
+					styleClass="#{filteringBean.centuryFilterNumber==21 ? 'bold':''}"
+					onclick="#{rich:component('table2')}.filter('centCol', 21); return false;">21th century</h:outputLink> |
+			</a4j:outputPanel>
 			<rich:dataTable value="#{olympicGamesBean.games}" var="game"
 				id="table2">
+				<f:facet name="noData">
+				<h:outputText value="No games for current filter found" style="font-weight:bold"/>
+				</f:facet>
 				<f:facet name="header">Olympic Games List</f:facet>
 				<rich:column>
 					<f:facet name="header">Flag</f:facet>
@@ -84,6 +111,7 @@
 				#{game.country}
 				</rich:column>
 				<rich:column id="contCol"
+					filterValue="#{filteringBean.continentFilterString}"
 					filterExpression="#{(filteringBean.continentFilterString=='')||(game.continent==filteringBean.continentFilterString)}">
 					<f:facet name="header">Continent</f:facet>				
 				#{game.continent}
@@ -92,7 +120,8 @@
 					<f:facet name="header">Season</f:facet>
 					#{game.season}
 				</rich:column>
-				<rich:column filter="#{filteringBean.centuryFilter}" id="centCol">
+				<rich:column filter="#{filteringBean.centuryFilter}"
+					filterValue="#{filteringBean.centuryFilterNumber}" id="centCol">
 					<f:facet name="header">Year</f:facet>	
 					#{game.year}
 				</rich:column>
