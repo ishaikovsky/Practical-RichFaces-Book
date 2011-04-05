@@ -10,7 +10,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.richfaces.book.examples.util.CalendarConverter;
 
-public class GameDescriptor implements Serializable {
+public class GameDescriptor implements Serializable{
+	private Integer id;
 	private String city;
 	private String country;
 	private String continent;
@@ -139,5 +140,13 @@ public class GameDescriptor implements Serializable {
 	@XmlElement
 	public seasons getSeason() {
 		return season;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

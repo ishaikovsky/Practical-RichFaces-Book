@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="org.richfaces.book.examples.model.GameDescriptor">
+		<id name="id">
+			<generator class="increment" />
+		</id>
+		<property name="city" />
+		<property name="country" />
+		<property name="continent" />
+		<property name="flagName" />
+		<property name="number" />
+		<property name="season" />
+		<property name="status" />
+		<property name="fromDate" />
+		<property name="toDate" />
+	</class>
+</hibernate-mapping>

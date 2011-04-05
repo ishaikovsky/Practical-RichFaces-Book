@@ -25,7 +25,7 @@ public class OlympicGamesBean implements Serializable {
 	private Map<String, List<GameDescriptor>> gamesMap;
 	private Collection<Object> selection = null;
 	private List<GameDescriptor> selectedGames = null;
-
+	private Integer currentRow;
 	public Map<String, List<GameDescriptor>> getGamesMap() {
 		if (gamesMap == null) {
 			gamesMap = new HashMap<String, List<GameDescriptor>>();
@@ -41,7 +41,7 @@ public class OlympicGamesBean implements Serializable {
 		}
 		return gamesMap;
 	}
-
+	
 	public List<String> getGamesMapKeys() {
 		Map<String, List<GameDescriptor>> map = getGamesMap();
 		List<String> continents = new ArrayList<String>();
@@ -64,6 +64,10 @@ public class OlympicGamesBean implements Serializable {
 		table.setRowKey(storedRowKey);
 	}
 
+	public GameDescriptor getCurrentGame(){
+		return (currentRow==null) ? null : games.get(currentRow);
+	}
+	
 	public void setSelectedGames(List<GameDescriptor> selectedGames) {
 		this.selectedGames = selectedGames;
 	}
@@ -88,4 +92,12 @@ public class OlympicGamesBean implements Serializable {
 		return games;
 	}
 
+	public void setCurrentRow(Integer currentRow) {
+		this.currentRow = currentRow;
+	}
+	
+	public Integer getCurrentRow() {
+		return currentRow;
+	}
+	
 }
