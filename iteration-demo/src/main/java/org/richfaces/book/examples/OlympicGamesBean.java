@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.richfaces.book.examples.model.BaseDescriptor;
 import org.richfaces.book.examples.model.GameDescriptor;
 import org.richfaces.component.UIExtendedDataTable;
 
@@ -64,7 +65,7 @@ public class OlympicGamesBean implements Serializable {
 		table.setRowKey(storedRowKey);
 	}
 
-	public GameDescriptor getCurrentGame(){
+	public BaseDescriptor getCurrentGame(){
 		return (currentRow==null) ? null : games.get(currentRow);
 	}
 	

@@ -1,6 +1,5 @@
 package org.richfaces.book.examples.model;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -10,8 +9,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.richfaces.book.examples.util.CalendarConverter;
 
-public class GameDescriptor implements Serializable{
-	private Integer id;
+public class GameDescriptor extends BaseDescriptor{
 	private String city;
 	private String country;
 	private String continent;
@@ -142,11 +140,4 @@ public class GameDescriptor implements Serializable{
 		return season;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 }

@@ -17,13 +17,14 @@ import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.richfaces.book.examples.model.BaseDescriptor;
 import org.richfaces.component.SortOrder;
 import org.richfaces.model.Arrangeable;
 import org.richfaces.model.ArrangeableState;
 import org.richfaces.model.FilterField;
 import org.richfaces.model.SortField;
 
-public abstract class BaseArrangeableHibernateDataModel<T> extends
+public abstract class BaseArrangeableHibernateDataModel<T extends BaseDescriptor> extends
 		ExtendedDataModel<T> implements Arrangeable {
 
 	private Class<T> entityClass;
@@ -33,7 +34,7 @@ public abstract class BaseArrangeableHibernateDataModel<T> extends
 		this.entityClass = entityClass;
 	}
 
-	private T dataItem;
+	private Integer rowKey;
 
 	private SequenceRange cachedRange;
 
@@ -99,12 +100,12 @@ public abstract class BaseArrangeableHibernateDataModel<T> extends
 
 	@Override
 	public Object getRowKey() {
-		return dataItem;
+		return rowKey;
 	}
 
 	@Override
 	public void setRowKey(Object key) {
-		this.dataItem = entityClass.cast(key);
+		this.rowKey = (Integer)key;
 	}
 
 	@Override
@@ -134,7 +135,7 @@ public abstract class BaseArrangeableHibernateDataModel<T> extends
 		}
 
 		for (T item : this.cachedItems) {
-			visitor.process(facesContext, item, argument);
+			visitor.process(facesContext, item.getId(), argument);
 		}
 	}
 
@@ -147,7 +148,12 @@ public abstract class BaseArrangeableHibernateDataModel<T> extends
 
 	@Override
 	public T getRowData() {
-		return this.dataItem;
+		for (T t : cachedItems) {
+			if (t.getId()==this.getRowKey()){
+				return t;
+			}
+		};
+		return null;
 	}
 
 	@Override
@@ -162,7 +168,7 @@ public abstract class BaseArrangeableHibernateDataModel<T> extends
 
 	@Override
 	public boolean isRowAvailable() {
-		return (this.dataItem != null);
+		return (getRowData()!=null);
 	}
 
 	@Override

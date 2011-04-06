@@ -5,54 +5,47 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/templates/template.xhtml">
+	template="/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 	<h3>Sample 1</h3>
-	<rich:panel style="width:650px" header="rich:dataTable sample">
-		<rich:dataTable value="#{hibernateDataModel}" var="game" rows="15">
-			<f:facet name="header">Olympic Games List</f:facet>
-			<rich:column>
-				<f:facet name="header">Flag</f:facet>
-				<h:graphicImage value="#{game.flagURI}" />
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">City</f:facet>
-				#{game.city}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Country</f:facet>
-				#{game.country}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Continent</f:facet>
-				#{game.continent}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Season</f:facet>
-				#{game.season}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Number</f:facet>
-				#{game.number}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Year</f:facet>
-				#{game.year}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">From</f:facet>
-				#{game.from}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">To</f:facet>
-				#{game.to}
-			</rich:column>
-			<rich:column>
-				<f:facet name="header">Note</f:facet>
-				<h:outputText value="#{game.status}" />
-			</rich:column>
-		</rich:dataTable>
-	</rich:panel>
-	
+	<h:form>
+		<rich:panel style="width:650px" header="rich:dataTable sample">
+			<a4j:outputPanel ajaxRendered="true" layout="block">
+				<a4j:repeat value="#{filteringBean.continents}" var="cont">
+					<h:outputLink value="#"
+						styleClass="#{filteringBean.continentFilterString==cont ? 'bold':''}">
+						#{cont}
+						<rich:componentControl target="table" operation="filter"
+							event="click">
+							<f:param value="contCol" />
+							<f:param value="#{cont}" />
+						</rich:componentControl>
+					</h:outputLink> |
+			</a4j:repeat>
+			</a4j:outputPanel>
+			<rich:dataTable value="#{hibernateDataModel}" var="game" rows="15"
+				id="table">
+				<f:facet name="header">Olympic Games List</f:facet>
+				<c:forEach items="#{hibernateBean.gameFields}" var="column">
+					<rich:column id="#{column}" sortBy="#{column}">
+						<f:facet name="header">
+							<h:commandLink value="#{column}">
+								<rich:componentControl target="table" operation="sort">
+									<f:param value="#{column}" />
+									<f:param value="" />
+									<f:param name="reset" value="true" />
+								</rich:componentControl>
+							</h:commandLink>
+						</f:facet>
+						<h:outputText value="#{game[column]}"/>
+					</rich:column>
+				</c:forEach>
+				<f:facet name="footer">
+					<rich:dataScroller/>
+				</f:facet>
+			</rich:dataTable>
+		</rich:panel>
+	</h:form>
 </ui:composition>
