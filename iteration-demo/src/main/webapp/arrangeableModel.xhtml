@@ -19,7 +19,7 @@
 						#{cont}
 						<rich:componentControl target="table" operation="filter"
 							event="click">
-							<f:param value="contCol" />
+							<f:param value="continent" />
 							<f:param value="#{cont}" />
 						</rich:componentControl>
 					</h:outputLink> |
@@ -29,7 +29,7 @@
 				id="table">
 				<f:facet name="header">Olympic Games List</f:facet>
 				<c:forEach items="#{hibernateBean.gameFields}" var="column">
-					<rich:column id="#{column}" sortBy="#{column}">
+					<rich:column id="#{column}" sortBy="#{column}" filterExpression="#{column}">
 						<f:facet name="header">
 							<h:commandLink value="#{column}">
 								<rich:componentControl target="table" operation="sort">
@@ -42,9 +42,6 @@
 						<h:outputText value="#{game[column]}"/>
 					</rich:column>
 				</c:forEach>
-				<f:facet name="footer">
-					<rich:dataScroller/>
-				</f:facet>
 			</rich:dataTable>
 		</rich:panel>
 	</h:form>

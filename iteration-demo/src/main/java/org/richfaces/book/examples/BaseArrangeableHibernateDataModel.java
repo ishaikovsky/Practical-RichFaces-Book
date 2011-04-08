@@ -63,7 +63,7 @@ public abstract class BaseArrangeableHibernateDataModel<T extends BaseDescriptor
 			for (FilterField filterField : filterFields) {
 				String propertyName = getPropertyName(context,
 						filterField.getFilterExpression());
-				String filterValue = filterField.getFilterValue().toString();
+				String filterValue = (String)filterField.getFilterValue();
 				if (filterValue != null && filterValue.length() != 0) {
 					criteria.add(Restrictions.like(propertyName, filterValue,
 							MatchMode.ANYWHERE).ignoreCase());
@@ -131,6 +131,7 @@ public abstract class BaseArrangeableHibernateDataModel<T extends BaseDescriptor
 			}
 
 			this.cachedRange = sequenceRange;
+			System.out.println("!!!!!!!!!!!!!!!!! BaseArrangeableHibernateDataModel.walk()");
 			this.cachedItems = criteria.list();
 		}
 
@@ -141,9 +142,14 @@ public abstract class BaseArrangeableHibernateDataModel<T extends BaseDescriptor
 
 	@Override
 	public int getRowCount() {
-		Criteria criteria = createCriteria();
-		appendFilters(FacesContext.getCurrentInstance(), criteria);
-		return (Integer) criteria.list().size();
+		System.out.println("!!!!!!!!!!!! BaseArrangeableHibernateDataModel.getRowCount()");
+		if (this.cachedItems == null){
+			Criteria criteria = createCriteria();
+			appendFilters(FacesContext.getCurrentInstance(), criteria);
+			return (Integer) criteria.list().size();
+		}else{
+			return this.cachedItems.size();
+		}
 	}
 
 	@Override
@@ -178,7 +184,7 @@ public abstract class BaseArrangeableHibernateDataModel<T extends BaseDescriptor
 	@Override
 	public void setWrappedData(Object data) {
 	}
-
+	//TODO: how to optimize that???
 	public void arrange(FacesContext facesContext, ArrangeableState state) {
 		if (state != null) {
 			this.filterFields = state.getFilterFields();
