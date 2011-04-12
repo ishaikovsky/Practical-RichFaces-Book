@@ -11,32 +11,13 @@
 	<h3>Sample 1</h3>
 	<h:form>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
-			<a4j:outputPanel ajaxRendered="true" layout="block">
-				<a4j:repeat value="#{filteringBean.continents}" var="cont">
-					<h:outputLink value="#"
-						styleClass="#{filteringBean.continentFilterString==cont ? 'bold':''}">
-						#{cont}
-						<rich:componentControl target="table" operation="filter"
-							event="click">
-							<f:param value="continent" />
-							<f:param value="#{cont}" />
-						</rich:componentControl>
-					</h:outputLink> |
-			</a4j:repeat>
-			</a4j:outputPanel>
-			<rich:dataTable value="#{arrangeableHibernateModel}" var="game" rows="15"
+			<rich:dataTable value="#{paggeableHibernateModel}" var="game" rows="15"
 				id="table">
 				<f:facet name="header">Olympic Games List</f:facet>
 				<c:forEach items="#{gamesHibernateBean.gameFields}" var="column">
-					<rich:column id="#{column}" sortBy="#{column}" filterExpression="#{column}">
+					<rich:column id="#{column}">
 						<f:facet name="header">
-							<h:commandLink value="#{column}">
-								<rich:componentControl target="table" operation="sort">
-									<f:param value="#{column}" />
-									<f:param value="" />
-									<f:param name="reset" value="true" />
-								</rich:componentControl>
-							</h:commandLink>
+							<h:outputText value="#{column}"/>
 						</f:facet>
 						<h:outputText value="#{game[column]}"/>
 					</rich:column>

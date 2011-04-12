@@ -20,7 +20,7 @@ import org.richfaces.book.examples.model.GameDescriptor;
 
 @ApplicationScoped
 @ManagedBean(eager = true)
-public class HibernateBean {
+public class GamesHibernateBean {
 
 	private SessionFactory sessionFactory = new Configuration().configure(
 			"hibernate.cfg.xml").buildSessionFactory();
