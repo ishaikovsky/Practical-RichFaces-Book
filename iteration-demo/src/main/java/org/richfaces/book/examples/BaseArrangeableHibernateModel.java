@@ -12,9 +12,11 @@ import org.ajax4jsf.model.DataVisitor;
 import org.ajax4jsf.model.Range;
 import org.ajax4jsf.model.SequenceRange;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.richfaces.book.examples.common.HibernateUtils;
 import org.richfaces.book.examples.model.BaseDescriptor;
 import org.richfaces.component.SortOrder;
 import org.richfaces.model.Arrangeable;
@@ -81,7 +83,8 @@ public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> ex
 
 		if (this.cachedItems == null
 				|| !areEqualRanges(this.cachedRange, sequenceRange)) {
-			Criteria criteria = createCriteria();
+			Session session = HibernateUtils.getSessionFactory().openSession();
+		    Criteria criteria = createCriteria(session);
 			appendFilters(facesContext, criteria);
 			appendSorts(facesContext, criteria);
 
@@ -97,6 +100,7 @@ public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> ex
 
 			this.cachedRange = sequenceRange;
 			this.cachedItems = criteria.list();
+			session.close();
 		}
 
 		for (T item : this.cachedItems) {
@@ -107,9 +111,11 @@ public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> ex
 	@Override
 	public int getRowCount() {
 		if (this.cachedRowCount == null){
-			Criteria criteria = createCriteria();
+            Session session = HibernateUtils.getSessionFactory().openSession();
+		    Criteria criteria = createCriteria(session);
 			appendFilters(FacesContext.getCurrentInstance(), criteria);
 			cachedRowCount = criteria.list().size();
+			session.close();
 		}
 		return this.cachedRowCount;
 	}
