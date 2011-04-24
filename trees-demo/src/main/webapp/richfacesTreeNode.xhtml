@@ -10,11 +10,41 @@
 
 	<h3>Sample 1</h3>
 	<rich:panel header="RichFaces tree node">
-		<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node" toggleType="client">
+		<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node"
+			toggleType="client">
 			<rich:treeNode>
 				#{node.data} 
 			</rich:treeNode>
-		</rich:tree> 
+		</rich:tree>
 	</rich:panel>
-	<p>Note about default node</p>
+	<h3>Sample 2</h3>
+	<rich:panel header="rich:treeNode component">
+		<rich:tree value="#{typifiedRichFacesTreeNodeBean.rootNode}"
+			var="node" nodeType="#{node.type}" toggleType="client"
+			selectionType="client">
+			<rich:treeNode type="NODE">
+				<h:outputText value="#{node.data}" />
+			</rich:treeNode>
+			<rich:treeNode type="LEAF">
+				<h:outputLink value="#">
+         #{node.data}
+      </h:outputLink>
+			</rich:treeNode>
+		</rich:tree>
+	</rich:panel>
+	<rich:panel header="RichFaces tree node">
+		<h:form>
+			<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node"
+				toggleType="client" selectionType="ajax"
+				selectionChangeListener="#{richFacesTreeNodeBean.selectionChanged}">
+				<rich:treeNode>
+				#{node.data} 
+			</rich:treeNode>
+			</rich:tree>
+		</h:form>
+		<a4j:repeat value="#{richFacesTreeNodeBean.selection}" var="nodeData">
+			#{nodeData}
+		</a4j:repeat>
+	</rich:panel>
+
 </ui:composition>

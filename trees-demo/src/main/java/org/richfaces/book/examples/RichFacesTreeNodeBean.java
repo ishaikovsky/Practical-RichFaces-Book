@@ -1,9 +1,14 @@
 package org.richfaces.book.examples;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.richfaces.book.examples.model.RichFacesTreeNode;
+import org.richfaces.component.UITree;
+import org.richfaces.event.TreeSelectionChangeEvent;
 import org.richfaces.model.TreeNode;
 import org.richfaces.model.TreeNodeImpl;
 
@@ -12,7 +17,18 @@ import org.richfaces.model.TreeNodeImpl;
 public class RichFacesTreeNodeBean {
 
 	private TreeNode rootNode = null;
-
+	private List<String> selection = new ArrayList<String>();
+	public void selectionChanged(TreeSelectionChangeEvent event){
+	    selection.clear();
+ 	    UITree tree = (UITree)event.getComponent();
+        Object storedRowKey = tree.getRowKey();
+	    for (Object rowKey : event.getNewSelection()) {
+	        tree.setRowKey(rowKey);
+	        selection.add(((RichFacesTreeNode)tree.getRowData()).getData());
+        }
+	    tree.setRowKey(storedRowKey);
+	}
+	
 	public void initNodes() {
 		//fake node. all the direct children nodes will be root nodes.
 		rootNode = new TreeNodeImpl();
@@ -53,4 +69,12 @@ public class RichFacesTreeNodeBean {
 		}
 		return rootNode;
 	}
+
+    public List<String> getSelection() {
+        return selection;
+    }
+
+    public void setSelection(List<String> selection) {
+        this.selection = selection;
+    }
 }
