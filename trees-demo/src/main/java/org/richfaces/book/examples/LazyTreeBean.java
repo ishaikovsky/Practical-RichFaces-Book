@@ -2,11 +2,11 @@ package org.richfaces.book.examples;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.richfaces.book.examples.model.RichFacesTreeNode;
 import org.richfaces.component.UITree;
 import org.richfaces.event.TreeToggleEvent;
+import org.richfaces.model.SequenceRowKey;
 import org.richfaces.model.TreeNode;
 import org.richfaces.model.TreeNodeImpl;
 
@@ -33,13 +33,9 @@ public class LazyTreeBean {
 	public void toggleListener(TreeToggleEvent event) {
 		UITree tree = (UITree) event.getComponent();
 		RichFacesTreeNode modelNode = (RichFacesTreeNode)tree.getRowData();
-		Object rowKey = tree.getRowKey();
-		String rowKeyString = tree.getRowKeyConverter().getAsString(FacesContext.getCurrentInstance(), tree, rowKey);
 		for (int i = 0; i < 10; i++) {
-			//TODO: important!! ask nick
-			String childKey = rowKeyString + "_" + i;
 			RichFacesTreeNode node = new RichFacesTreeNode(modelNode.getData() + "." + i);
-			modelNode.addChild(childKey, node);
+			modelNode.addChild(i, node);
 		}
 	}
 
