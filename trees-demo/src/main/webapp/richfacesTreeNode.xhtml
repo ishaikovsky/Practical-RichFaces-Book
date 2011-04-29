@@ -7,7 +7,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/template.xhtml">
 
-
+	<style>
+.top {
+	vertical-align: top;
+}
+</style>
 	<h3>Sample 1</h3>
 	<rich:panel header="RichFaces tree node">
 		<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node"
@@ -32,19 +36,56 @@
 			</rich:treeNode>
 		</rich:tree>
 	</rich:panel>
-	<rich:panel header="RichFaces tree node">
+	<rich:panel header="RichFaces tree node selection">
+		<h:panelGrid columns="2" columnClasses="top, top">
+			<h:form>
+				<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node"
+					toggleType="client" selectionType="ajax"
+					selectionChangeListener="#{richFacesTreeNodeBean.selectionChanged}">
+					<rich:treeNode>
+				#{node.data} 
+			</rich:treeNode>
+				</rich:tree>
+			</h:form>
+			<a4j:outputPanel layout="block" ajaxRendered="true">
+				<rich:panel header="Current selection:"
+					rendered="#{not empty richFacesTreeNodeBean.selection}">
+					<a4j:repeat value="#{richFacesTreeNodeBean.selection}"
+						var="nodeData">
+			    #{nodeData}
+		    </a4j:repeat>
+				</rich:panel>
+			</a4j:outputPanel>
+
+		</h:panelGrid>
+	</rich:panel>
+	<rich:panel header="RichFaces tree node toggling">
+		<h:panelGrid columns="2" columnClasses="top, top">
+			<h:form>
+				<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node"
+					toggleType="ajax"
+					toggleListener="#{richFacesTreeNodeBean.nodeToggled}">
+					<rich:treeNode>
+				#{node.data} 
+			</rich:treeNode>
+				</rich:tree>
+			</h:form>
+			<a4j:outputPanel layout="block" ajaxRendered="true">
+				<h:outputText
+					value="#{richFacesTreeNodeBean.toggledNodeData} has the state changed!"
+					rendered="#{not empty richFacesTreeNodeBean.toggledNodeData}" />
+			</a4j:outputPanel>
+
+		</h:panelGrid>
+	</rich:panel>
+	<rich:panel header="RichFaces Lazy tree">
 		<h:form>
-			<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node"
-				toggleType="client" selectionType="ajax"
-				selectionChangeListener="#{richFacesTreeNodeBean.selectionChanged}">
+			<rich:tree value="#{lazyTreeBean.rootNode}" var="node"
+				toggleType="ajax" toggleListener="#{lazyTreeBean.toggleListener}">
 				<rich:treeNode>
 				#{node.data} 
 			</rich:treeNode>
 			</rich:tree>
 		</h:form>
-		<a4j:repeat value="#{richFacesTreeNodeBean.selection}" var="nodeData">
-			#{nodeData}
-		</a4j:repeat>
 	</rich:panel>
-
 </ui:composition>
