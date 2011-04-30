@@ -10,11 +10,7 @@
 
 	<h3>Sample 1</h3>
 	<rich:panel header="Swing tree node">
-		<rich:tree value="#{swingTreeNodeBean.rootNodes}" var="node" toggleType="client">
-			<rich:treeNode>
-				#{node.data} 
-			</rich:treeNode>
-		</rich:tree>
+		<rich:tree value="#{swingTreeNodeBean.rootNodes}" var="node" toggleType="client"/>
 	</rich:panel>
 	<p>Note about default node</p>
 </ui:composition>

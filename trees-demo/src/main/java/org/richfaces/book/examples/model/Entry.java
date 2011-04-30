@@ -2,10 +2,10 @@ package org.richfaces.book.examples.model;
 
 import java.util.List;
 
-public class NodeEntry {
+public class Entry {
 	private String name;
 
-	public NodeEntry(String name) {
+	public Entry(String name) {
 		super();
 		this.name = name;
 	}

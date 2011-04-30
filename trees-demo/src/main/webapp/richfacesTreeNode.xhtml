@@ -78,14 +78,4 @@
 
 		</h:panelGrid>
 	</rich:panel>
-	<rich:panel header="RichFaces Lazy tree">
-		<h:form>
-			<rich:tree value="#{lazyTreeBean.rootNode}" var="node"
-				toggleType="ajax" toggleListener="#{lazyTreeBean.toggleListener}">
-				<rich:treeNode>
-				#{node.data} 
-			</rich:treeNode>
-			</rich:tree>
-		</h:form>
-	</rich:panel>
 </ui:composition>

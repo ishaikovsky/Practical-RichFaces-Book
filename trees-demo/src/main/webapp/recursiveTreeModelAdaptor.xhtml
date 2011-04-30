@@ -7,20 +7,21 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/template.xhtml">
 
-
 	<h3>Sample 1</h3>
 	<rich:panel header="Swing tree node">
-		<rich:tree var="node" toggleType="client">
-			<rich:treeModelAdaptor nodes="#{declarativeTreeNodesBean.entries}">
+		<rich:tree toggleType="client" var="item">
+			<rich:treeModelRecursiveAdaptor roots="#{fileSystemBean.rootDirs}"
+				nodes="#{item.directories}">
 				<rich:treeNode>
-					#{node.name}
-				</rich:treeNode>
-				<rich:treeModelAdaptor nodes="#{node.properties}">
-					<rich:treeNode>
-						#{node}
-					</rich:treeNode>
+                    #{item.shortPath}
+                </rich:treeNode>
+				<rich:treeModelAdaptor nodes="#{item.files}">
+					<rich:treeNode>#{item}</rich:treeNode>
 				</rich:treeModelAdaptor>
-			</rich:treeModelAdaptor>
+			</rich:treeModelRecursiveAdaptor>
+			<rich:treeModelAdaptor nodes="#{fileSystemBean.rootFiles}">
+					<rich:treeNode>#{item}</rich:treeNode>
+			</rich:treeModelAdaptor>			
 		</rich:tree>
 	</rich:panel>
 </ui:composition>

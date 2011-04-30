@@ -8,15 +8,21 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class FileSystemBean {
-    private static final String SRC_PATH = "/WEB-INF";
+	private List<FileSystemNode> rootDirs;
+	private List<String> rootFiles;
+	private FileSystemNode rootNode = new FileSystemNode("/");
 
-    private List<FileSystemNode> webInfRoots;
+	public List<FileSystemNode> getRootDirs() {
+		if (rootDirs == null) {
+			rootDirs = rootNode.getDirectories();
+		}
+		return rootDirs;
+	}
 
-    public synchronized List<FileSystemNode> getWebInfRoots() {
-        if (webInfRoots == null) {
-            webInfRoots = new FileSystemNode(SRC_PATH).getDirectories();
-        }
-
-        return webInfRoots;
-    }
+	public List<String> getRootFiles() {
+		if (rootFiles == null) {
+			rootFiles = rootNode.getFiles();
+		}
+		return rootFiles;
+	}
 }

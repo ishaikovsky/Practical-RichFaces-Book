@@ -6,20 +6,17 @@ import javax.faces.bean.ViewScoped;
 import org.richfaces.book.examples.model.RichFacesTreeNode;
 import org.richfaces.component.UITree;
 import org.richfaces.event.TreeToggleEvent;
-import org.richfaces.model.SequenceRowKey;
 import org.richfaces.model.TreeNode;
 import org.richfaces.model.TreeNodeImpl;
 
 @ManagedBean
 @ViewScoped
 public class LazyTreeBean {
-
+	
 	private TreeNode rootNode = null;
 
 	public void initNodes() {
-		// fake node. all the direct children nodes will be root nodes.
 		rootNode = new TreeNodeImpl();
-
 		RichFacesTreeNode node = new RichFacesTreeNode("Node 1");
 		rootNode.addChild("1", node);
 		node = new RichFacesTreeNode("Node 2");
@@ -33,7 +30,7 @@ public class LazyTreeBean {
 	public void toggleListener(TreeToggleEvent event) {
 		UITree tree = (UITree) event.getComponent();
 		RichFacesTreeNode modelNode = (RichFacesTreeNode)tree.getRowData();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			RichFacesTreeNode node = new RichFacesTreeNode(modelNode.getData() + "." + i);
 			modelNode.addChild(i, node);
 		}

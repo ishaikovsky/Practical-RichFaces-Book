@@ -6,18 +6,18 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import org.richfaces.book.examples.model.NodeEntry;
+import org.richfaces.book.examples.model.Entry;
 
 @ManagedBean
 @SessionScoped
 public class DeclarativeTreeNodesBean {
 	
-	private List<NodeEntry> entries = null;
+	private List<Entry> entries = null;
 	
 	public void initEntries(){
-		entries = new ArrayList<NodeEntry>();
+		entries = new ArrayList<Entry>();
 		
-		NodeEntry entry = new NodeEntry("Desktop Type");
+		Entry entry = new Entry("Desktop Type");
 		List<String> childEntries = new ArrayList<String>();
 		childEntries.add("Compact");
 		childEntries.add("Everyday");
@@ -26,13 +26,13 @@ public class DeclarativeTreeNodesBean {
 		entry.setProperties(childEntries);
 		entries.add(entry);
 		
-		entry = new NodeEntry("Customer Reviews");
+		entry = new Entry("Customer Reviews");
 		childEntries = new ArrayList<String>();
 		childEntries.add("Top Rated");
 		entry.setProperties(childEntries);		
 		entries.add(entry);
 
-		entry = new NodeEntry("Current Offers");
+		entry = new Entry("Current Offers");
 		childEntries = new ArrayList<String>();
 		childEntries.add("On Sale");
 		childEntries.add("Special Offers");
@@ -42,7 +42,7 @@ public class DeclarativeTreeNodesBean {
 		entry.setProperties(childEntries);		
 		entries.add(entry);
 		
-		entry = new NodeEntry("Availability");
+		entry = new Entry("Availability");
 		childEntries = new ArrayList<String>();
 		childEntries.add("In store & Online");
 		childEntries.add("Online only");
@@ -50,14 +50,14 @@ public class DeclarativeTreeNodesBean {
 		entries.add(entry);
 		
 	}
-	public List<NodeEntry> getEntries() {
+	public List<Entry> getEntries() {
 		if (entries == null) {
 			initEntries();
 		}
 		return entries;
 	}
 
-	public void setEntries(List<NodeEntry> entries) {
+	public void setEntries(List<Entry> entries) {
 		this.entries = entries;
 	}
 
