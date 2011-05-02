@@ -24,8 +24,8 @@ import org.richfaces.model.ArrangeableState;
 import org.richfaces.model.FilterField;
 import org.richfaces.model.SortField;
 
-public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> extends
-		BasePageableHibernateModel<T> implements Arrangeable {
+public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor>
+		extends BasePageableHibernateModel<T> implements Arrangeable {
 
 	public BaseArrangeableHibernateModel(Class<T> entityClass) {
 		super(entityClass);
@@ -40,7 +40,7 @@ public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> ex
 			for (FilterField filterField : filterFields) {
 				String propertyName = getPropertyName(context,
 						filterField.getFilterExpression());
-				String filterValue = (String)filterField.getFilterValue();
+				String filterValue = (String) filterField.getFilterValue();
 				if (filterValue != null && filterValue.length() != 0) {
 					criteria.add(Restrictions.like(propertyName, filterValue,
 							MatchMode.ANYWHERE).ignoreCase());
@@ -84,23 +84,26 @@ public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> ex
 		if (this.cachedItems == null
 				|| !areEqualRanges(this.cachedRange, sequenceRange)) {
 			Session session = HibernateUtils.getSessionFactory().openSession();
-		    Criteria criteria = createCriteria(session);
-			appendFilters(facesContext, criteria);
-			appendSorts(facesContext, criteria);
+			try {
+				Criteria criteria = createCriteria(session);
+				appendFilters(facesContext, criteria);
+				appendSorts(facesContext, criteria);
 
-			if (sequenceRange != null) {
-				int first = sequenceRange.getFirstRow();
-				int rows = sequenceRange.getRows();
+				if (sequenceRange != null) {
+					int first = sequenceRange.getFirstRow();
+					int rows = sequenceRange.getRows();
 
-				criteria.setFirstResult(first);
-				if (rows > 0) {
-					criteria.setMaxResults(rows);
+					criteria.setFirstResult(first);
+					if (rows > 0) {
+						criteria.setMaxResults(rows);
+					}
 				}
-			}
 
-			this.cachedRange = sequenceRange;
-			this.cachedItems = criteria.list();
-			session.close();
+				this.cachedRange = sequenceRange;
+				this.cachedItems = criteria.list();
+			} finally {
+				session.close();
+			}
 		}
 
 		for (T item : this.cachedItems) {
@@ -110,12 +113,15 @@ public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> ex
 
 	@Override
 	public int getRowCount() {
-		if (this.cachedRowCount == null){
-            Session session = HibernateUtils.getSessionFactory().openSession();
-		    Criteria criteria = createCriteria(session);
-			appendFilters(FacesContext.getCurrentInstance(), criteria);
-			cachedRowCount = criteria.list().size();
-			session.close();
+		if (this.cachedRowCount == null) {
+			Session session = HibernateUtils.getSessionFactory().openSession();
+			try {
+				Criteria criteria = createCriteria(session);
+				appendFilters(FacesContext.getCurrentInstance(), criteria);
+				cachedRowCount = criteria.list().size();
+			} finally {
+				session.close();
+			}
 		}
 		return this.cachedRowCount;
 	}
@@ -126,7 +132,7 @@ public abstract class BaseArrangeableHibernateModel<T extends BaseDescriptor> ex
 			this.sortFields = state.getSortFields();
 			this.cachedItems = null;
 			this.cachedRange = null;
-			this.cachedRowCount=null;
+			this.cachedRowCount = null;
 		}
 	}
 }
