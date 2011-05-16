@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+	<style>
+.rf-dg-c {
+	border: 0;
+}
+
+.top {
+	vertical-align: top;
+}
+</style>
+	<h:form>
+		<h:panelGrid columns="2" id="panel">
+			<rich:panel header="Products">
+				<rich:dataGrid value="#{shoppingCartBean.items}" var="item"
+					style="border:0;">
+					<rich:panel>
+						<rich:dragSource type="products" dragValue="#{item}" />
+						<h:outputText value="#{item}" />
+					</rich:panel>
+				</rich:dataGrid>
+			</rich:panel>
+			<rich:panel header="Shopping Cart">
+				<h:panelGrid>
+					<h:outputText value="#{shoppingCartBean.productsCount}"
+						rendered="#{not empty shoppingCartBean.cartItems}" />
+					<h:graphicImage
+						value="#{empty shoppingCartBean.cartItems?'/images/empty_cart.png':'/images/cart.png'}" />
+				</h:panelGrid>
+				<rich:dropTarget render="panel" acceptedTypes="products"
+					dropListener="#{shoppingCartBean.processDrop}" />
+				<h:link outcome="checkout" rendered="#{not empty shoppingCartBean.cartItems}">Checkout</h:link>
+			</rich:panel>
+		</h:panelGrid>
+	</h:form>
+</ui:composition>
