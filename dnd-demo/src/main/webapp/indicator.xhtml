@@ -7,27 +7,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/template.xhtml">
 	<style>
-.rf-dg-c {
-	border: 0;
-}
-
-.top {
-	vertical-align: top;
-}
-</style>
-	<h1>sample 1</h1>
-	<h:graphicImage value="/images/nikon-d3100.png" id="id"
-		style="cursor:pointer">
-		<rich:dragSource type="img" />
-	</h:graphicImage>
-	<a4j:status startText="Processing drop event" />
-	<h:form>
-		<rich:panel id="dropZone" header="Drop Here">
-			<rich:dropTarget acceptedTypes="@all" />
-		</rich:panel>
-	</h:form>
-	<h1>sample 3</h1>
-	<style>
 		.rf-ind-drag{
 			<!-- insert anything to customize default dragged look -->
 		}
@@ -37,15 +16,20 @@
 		.rf-ind-rejt{
 			border:3px solid red;
 		}
-	</style>
-	<h:form>
+	</style>	<h:form>
+		<rich:dragIndicator id="indicator">
+			<rich:panel>
+				<h:outputText value="Drop product to cart" />
+			</rich:panel>
+		</rich:dragIndicator>
 		<h:panelGrid columns="2" id="panel" columnClasses="top,top">
 			<rich:panel header="Products" style="width:300px">
 				<rich:dropTarget acceptedTypes="targetProducts"
-					dropListener="#{shoppingCartBean.processRemove}" render="panel"/>
+					dropListener="#{shoppingCartBean.processRemove}" render="panel" />
 				<rich:dataGrid value="#{shoppingCartBean.items}" var="item">
 					<rich:panel style="width:275px">
-						<rich:dragSource type="products" dragValue="#{item}" />
+						<rich:dragSource type="products" dragValue="#{item}"
+							dragIndicator="indicator" />
 						<h:panelGrid columns="2">
 							<h:graphicImage value="#{item.iconURI}" />
 							<fieldset><legend><b>#{item.title}"</b></legend>#{item.description}</fieldset>

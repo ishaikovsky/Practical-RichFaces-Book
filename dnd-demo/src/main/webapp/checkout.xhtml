@@ -6,12 +6,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/template.xhtml">
-	<rich:panel header="Items for checkout">
-		<rich:dataGrid value="#{shoppingCartBean.cartItems}" var="item"
-			style="border:0;">
-			<rich:panel>
-				<h:outputText value="#{item}" />
-			</rich:panel>
-		</rich:dataGrid>
-	</rich:panel>
+	<rich:dataTable value="#{shoppingCartBean.cartItems}" var="item">
+		<f:facet name="header">Items for checkout</f:facet>
+		<rich:column>
+				#{item.title}
+			</rich:column>
+		<rich:column>
+				#{item.description}
+			</rich:column>
+	</rich:dataTable>
 </ui:composition>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+	<style>
+.rf-ind-acpt {
+	border: 2px solid green;
+}
+</style>
+	<h:form>
+		<rich:tree value="#{treeDnDBean.nodes}" nodeType="#{node.nodeType}"
+			id="tree" var="node" toggleType="client">
+			<rich:treeNode type="node">
+				<a4j:outputPanel>
+					<rich:dropTarget acceptedTypes="file" render="tree" execute="tree"
+						dropListener="#{treeDnDBean.moveFile}" dropValue="#{node}" />
+					<h:outputText value="#{node.label}" />
+				</a4j:outputPanel>
+			</rich:treeNode>
+			<rich:treeNode type="leaf">
+				<a4j:outputPanel>
+					<rich:dragSource type="file" dragValue="#{node}" />
+					<h:outputText value="#{node.label}" />
+				</a4j:outputPanel>
+			</rich:treeNode>
+		</rich:tree>
+	</h:form>
+</ui:composition>
