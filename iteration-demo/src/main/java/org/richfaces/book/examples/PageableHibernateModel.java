@@ -6,10 +6,10 @@ import javax.faces.bean.SessionScoped;
 import org.richfaces.book.examples.model.GameDescriptor;
 @ManagedBean
 @SessionScoped
-public class PaggeableHibernateModel extends
+public class PageableHibernateModel extends
 		BasePageableHibernateModel<GameDescriptor> {
 
-	public PaggeableHibernateModel() {
+	public PageableHibernateModel() {
 		super(GameDescriptor.class);
 	}
 

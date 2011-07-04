@@ -8,7 +8,7 @@
 	template="/templates/template.xhtml">
 
 
-	<h3>rowKeyVar attribute</h3>
+	<h3>rowKeyVar attribute simple usage</h3>
 	<rich:panel style="width:650px" header="rich:dataTable sample">
 		<rich:dataTable value="#{olympicGamesBean.games}" var="game"
 			rowKeyVar="key" rows="10">
@@ -56,6 +56,74 @@
 			</rich:column>
 		</rich:dataTable>
 	</rich:panel>
+		<h3>passing row identifier to action with rowKeyVar</h3>
+	
+<h:form>
+   <a4j:jsFunction name="updateDetails" render="details">
+      <a4j:param name="rowKey" assignTo="#{olympicGamesBean.currentRow}" />
+   </a4j:jsFunction>
+   <rich:panel style="width:650px" header="rich:dataTable sample">
+      <h:panelGrid columns="2">
+         <rich:dataTable value="#{olympicGamesBean.games}" var="game" style="cursor:pointer;"
+            rowKeyVar="key" rows="5" id="table" onrowclick="updateDetails(#{key})">
+            <f:facet name="header">Olympic Games List</f:facet>
+			<rich:column>
+				<f:facet name="header">Flag</f:facet>
+				<h:graphicImage value="#{game.flagURI}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">City</f:facet>
+				#{game.city}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Country</f:facet>
+				#{game.country}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Continent</f:facet>
+				#{game.continent}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Season</f:facet>
+				#{game.season}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Number</f:facet>
+				#{game.number}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Year</f:facet>
+				#{game.year}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">From</f:facet>
+				#{game.from}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">To</f:facet>
+				#{game.to}
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">Note</f:facet>
+				<h:outputText value="#{game.status}" />
+			</rich:column>
+         </rich:dataTable>
+         <rich:panel id="details" header="Selected Game:">
+            <a4j:outputPanel layout="block" rendered="#{olympicGamesBean.currentGame ne null}">
+               <h:graphicImage value="#{olympicGamesBean.currentGame.flagURI}" />
+               <h:panelGrid columns="2">
+                  <h:outputText value="Continent:" /> #{olympicGamesBean.currentGame.continent}
+                  <h:outputText value="Country:" /> #{olympicGamesBean.currentGame.country}
+                  <h:outputText value="City:" /> #{olympicGamesBean.currentGame.city}
+                  <h:outputText value="From date:" /> #{olympicGamesBean.currentGame.from}
+                  <h:outputText value="To date:" /> #{olympicGamesBean.currentGame.to}
+               </h:panelGrid>
+            </a4j:outputPanel>
+         </rich:panel>
+      </h:panelGrid>
+   </rich:panel>
+</h:form>
+	
 	<h3>iterationVar attribute</h3>
 	<style>
 .odd {

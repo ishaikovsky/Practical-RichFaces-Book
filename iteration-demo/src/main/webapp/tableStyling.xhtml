@@ -9,7 +9,7 @@
 	template="/templates/template.xhtml">
 
 
-	<h3>Sample 1</h3>
+	<h3>Simple Table</h3>
 	<rich:panel style="width:650px" header="rich:dataTable sample">
 		<rich:dataTable value="#{olympicGamesBean.games}" var="game">
 			<f:facet name="header">Olympic Games List</f:facet>
@@ -55,7 +55,7 @@
 			</rich:column>
 		</rich:dataTable>
 	</rich:panel>
-	<h3>Sample 2</h3>
+	<h3>Zebra-style and highlight</h3>
 	<style>
 .odd {
 	background-color: #{ richSkin . additionalBackgroundColor
@@ -121,7 +121,7 @@
 			</rich:column>
 		</rich:dataTable>
 	</rich:panel>
-	<h3>Sample 3</h3>
+	<h3>rowClass usage</h3>
 	<style>
 .odd {
 	background-color: #{richSkin.additionalBackgroundColor};

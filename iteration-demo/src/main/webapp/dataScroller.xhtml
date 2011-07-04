@@ -5,11 +5,10 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
 	template="/templates/template.xhtml">
 
 	<h:form>
-		<h3>Sample 1</h3>
+		<h3>Simple data scroller usage</h3>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
 			<rich:dataTable value="#{olympicGamesBean.games}" var="game"
 				rows="10">
@@ -61,7 +60,7 @@
 		</rich:panel>
 	</h:form>
 	<h:form>
-		<h3>Sample 1</h3>
+		<h3>Two scrollers outside the table in sync</h3>
 
 		<rich:panel style="width:650px" header="rich:dataTable sample"
 			id="pnl">
@@ -115,11 +114,10 @@
 
 
 	<h:form>
-		<h3>Sample 1</h3>
+		<h3>Scroller customization</h3>
 
 		<rich:panel style="width:650px" header="rich:dataTable sample"
 			id="pnl">
-			<rich:dataScroller for="table" />
 			<rich:dataTable value="#{olympicGamesBean.games}" var="game" rows="5"
 				id="table">
 				<rich:column>
@@ -163,7 +161,7 @@
 					<h:outputText value="#{game.status}" />
 				</rich:column>
 				<f:facet name="footer">
-					<rich:dataScroller selectedStyle="font-weight:bold">
+					<rich:dataScroller>
 						<f:facet name="first">First</f:facet>
 						<f:facet name="first_disabled">First</f:facet>
 						<f:facet name="last">Last</f:facet>
@@ -184,7 +182,7 @@
 	</h:form>
 
 	<h:form>
-		<h3>Sample 1</h3>
+		<h3>Scroller and list</h3>
 		<rich:panel header="Using rich:datascroller">
 			<rich:list type="definitions" value="#{olympicGamesBean.games}"
 				var="game" rows="5" id="list">
@@ -193,12 +191,11 @@
 				</f:facet>
 				#{game.country}, #{game.city}, #{game.from} - #{game.to}
 			</rich:list>
-			<rich:dataScroller for="list" maxPages="4"
-				selectedStyle="font-weight:bold" />
+			<rich:dataScroller for="list" maxPages="4"/>
 		</rich:panel>
 	</h:form>
 
-	<h3>Sample 1</h3>
+	<h3>Scroller and grid</h3>
 	<h:form>
 		<rich:panel style="width:560px;"
 			header="rich:dataGrid sample">

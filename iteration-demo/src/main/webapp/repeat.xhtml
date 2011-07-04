@@ -5,12 +5,12 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:b="http://java.sun.com/jsf/composite/org.richfaces.book.tags"
 	template="/templates/template.xhtml">
 
 
-	<h3>Sample 1</h3>
-	<a4j:repeat value="#{olympicGamesBean.games}" var="game" columns="3">
+	<h3>Creating grid using repeat</h3>
+	<p>resize the browser to see the grid dynamically changing.</p>
+	<a4j:repeat value="#{olympicGamesBean.games}" var="game">
 		<rich:panel style="width:220px; height:60px; float:left; margin:5px;">
 			<h:graphicImage value="#{game.flagURI}" />
 			<b>#{game.country} - #{game.city}</b>

@@ -11,7 +11,7 @@
 	<h3>Sample 1</h3>
 	<h:form>
 		<rich:panel style="width:650px" header="rich:dataTable sample">
-			<rich:dataTable value="#{paggeableHibernateModel}" var="game" rows="15"
+			<rich:dataTable value="#{pageableHibernateModel}" var="game" rows="15"
 				id="table">
 				<f:facet name="header">Olympic Games List</f:facet>
 				<c:forEach items="#{gamesHibernateBean.gameFields}" var="column">
