@@ -12,7 +12,6 @@
 	vertical-align: top;
 }
 </style>
-	<h3>Sample 1</h3>
 	<rich:panel header="RichFaces tree node">
 		<rich:tree value="#{richFacesTreeNodeBean.rootNode}" var="node"
 			toggleType="client">
@@ -21,8 +20,8 @@
 			</rich:treeNode>
 		</rich:tree>
 	</rich:panel>
-	<h3>Sample 2</h3>
-	<rich:panel header="rich:treeNode component">
+<br/>
+	<rich:panel header="rich:treeNode component nodes customized">
 		<rich:tree value="#{typifiedRichFacesTreeNodeBean.rootNode}"
 			var="node" nodeType="#{node.type}" toggleType="client"
 			selectionType="client">
@@ -36,6 +35,7 @@
 			</rich:treeNode>
 		</rich:tree>
 	</rich:panel>
+	<br/>
 	<rich:panel header="RichFaces tree node selection">
 		<h:panelGrid columns="2" columnClasses="top, top">
 			<h:form>
@@ -59,6 +59,7 @@
 
 		</h:panelGrid>
 	</rich:panel>
+	<br/>
 	<rich:panel header="RichFaces tree node toggling">
 		<h:panelGrid columns="2" columnClasses="top, top">
 			<h:form>

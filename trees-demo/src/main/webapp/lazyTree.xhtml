@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/template.xhtml">
-	<rich:panel header="RichFaces Lazy tree">
+	<rich:panel header="Empty tree without listener">
 		<h:form>
 			<rich:tree value="#{lazyTreeBean.rootNode}" var="node"
 				toggleType="ajax">
@@ -16,7 +16,7 @@
 			</rich:tree>
 		</h:form>
 	</rich:panel>
-	<rich:panel header="RichFaces Lazy tree">
+	<rich:panel header="RichFaces Lazy tree using listener to add nodes">
 		<h:form>
 			<rich:tree value="#{lazyTreeBean.rootNode}" var="node"
 				toggleType="ajax" toggleListener="#{lazyTreeBean.toggleListener}">
