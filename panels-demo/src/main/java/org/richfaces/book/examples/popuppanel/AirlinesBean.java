@@ -17,7 +17,7 @@ public class AirlinesBean {
 		airlines.add(new Airline("American Airlines", "AA"));
 		airlines.add(new Airline("United Airlines", "UA"));
 		airlines.add(new Airline("Delta", "DD"));
-		airlines.add(new Airline("Northwest Airlines", "NW"));
+		airlines.add(new Airline("Southwest Airlines", "WN"));
 		airlines.add(new Airline("US Airways", "US"));
 	}
 

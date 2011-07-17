@@ -6,6 +6,7 @@ public class FileSystemNode extends SwingTreeNodeImpl<Object> {
     private String label;
 
     public FileSystemNode(String label) {
+        super();
         this.label = label;
     }
 

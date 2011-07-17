@@ -1,10 +1,5 @@
 package org.richfaces.book.examples;
 
-import static com.google.common.base.Predicates.containsPattern;
-import static com.google.common.base.Predicates.not;
-import static com.google.common.collect.Iterables.filter;
-import static com.google.common.collect.Iterables.transform;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,10 +9,12 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+
 public class FileSystemNode {
-    
+
     private static final Function<String, FileSystemNode> FACTORY = new Function<String, FileSystemNode>() {
         public FileSystemNode apply(String from) {
             return new FileSystemNode(from.substring(0, from.length() - 1));
@@ -31,17 +28,17 @@ public class FileSystemNode {
             if (idx < 0) {
                 return from;
             }
-            
+
             return from.substring(idx + 1);
         };
     };
-    
+
     private String path;
 
     private List<FileSystemNode> directories;
 
     private List<String> files;
-    
+
     private String shortPath;
 
     public FileSystemNode(String path) {
@@ -53,11 +50,12 @@ public class FileSystemNode {
             shortPath = path;
         }
     }
-    
+
     public synchronized List<FileSystemNode> getDirectories() {
         if (directories == null) {
             directories = Lists.newArrayList();
-            Iterables.addAll(directories, transform(filter(getResourcePaths(), containsPattern("/$")), FACTORY));
+            Iterables.addAll(directories,
+                Iterables.transform(Iterables.filter(getResourcePaths(), Predicates.containsPattern("/$")), FACTORY));
         }
         return directories;
     }
@@ -65,7 +63,8 @@ public class FileSystemNode {
     public synchronized List<String> getFiles() {
         if (files == null) {
             files = new ArrayList<String>();
-            Iterables.addAll(files, transform(filter(getResourcePaths(), not(containsPattern("/$"))), TO_SHORT_PATH));
+            Iterables.addAll(files, Iterables.transform(
+                Iterables.filter(getResourcePaths(), Predicates.not(Predicates.containsPattern("/$"))), TO_SHORT_PATH));
         }
         return files;
     }
@@ -79,7 +78,7 @@ public class FileSystemNode {
         }
         return resourcePaths;
     }
-    
+
     public String getShortPath() {
         return shortPath;
     }

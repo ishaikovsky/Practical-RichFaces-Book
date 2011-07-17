@@ -9,20 +9,20 @@
 	template="/templates/template.xhtml">
 	<style>
 		.col{
+			width:500px;
 			vertical-align: top;
 			padding: 20px;
 			margin:20px;
+		}
+		.rf-tb{
+			margin-bottom:5px;
 		}
 	</style>
 	<h:panelGrid columns="2" columnClasses="col, col">
 		<h:panelGroup layout="block">
 			<h3>1. Simple toolbar</h3>
-			<rich:panel style="width:650px">
-				<f:facet name="header">
-        Using rich:toolBar
-    </f:facet>
 				<h:form>
-					<rich:toolbar>
+					<rich:toolbar height="24px">
 						<a4j:commandLink id="nyc" value="New York City"
 							actionListener="#{toolbarBean.cityListener}" />
 						<a4j:commandLink id="sf" value="San Francisco"
@@ -53,14 +53,10 @@
             </h:panelGrid>
 					</a4j:outputPanel>
 				</rich:panel>
-			</rich:panel>
 			<h3>2. Toolbar with "line" separator</h3>
-			<rich:panel style="width:650px">
-				<f:facet name="header">
-        Using rich:toolBar
-    </f:facet>
+
 				<h:form>
-					<rich:toolbar itemSeparator="line">
+					<rich:toolbar height="24px"  itemSeparator="line">
 						<a4j:commandLink id="nyc" value="New York City"
 							actionListener="#{toolbarBean.cityListener}" />
 						<a4j:commandLink id="sf" value="San Francisco"
@@ -91,15 +87,10 @@
             </h:panelGrid>
 					</a4j:outputPanel>
 				</rich:panel>
-			</rich:panel>
 
 			<h3>3. Custom separator</h3>
-			<rich:panel style="width:650px">
-				<f:facet name="header">
-        Using rich:toolBar
-    </f:facet>
 				<h:form>
-					<rich:toolbar>
+					<rich:toolbar height="24px" >
 						<f:facet name="itemSeparator">
 							<h:outputText value="|" />
 						</f:facet>
@@ -139,23 +130,19 @@
         </h:panelGrid>
 					</a4j:outputPanel>
 				</rich:panel>
-			</rich:panel>
 		</h:panelGroup>
 		<h:panelGroup layout="block">
 			<h3>4. Toolbar with group</h3>
-			<rich:panel style="width:650px">
-				<f:facet name="header">
-        Using rich:toolBar
-    </f:facet>
+	
 				<h:form>
-					<rich:toolbar itemSeparator="line">
+					<rich:toolbar height="24px"  itemSeparator="line">
 						<a4j:commandLink id="nyc" value="New York City"
-							actionListener="#{toolBarBean.cityListener}" />
+							actionListener="#{toolbarBean.cityListener}" />
 						<rich:toolbarGroup itemSeparator="square" location="right">
 							<a4j:commandLink id="sf" value="San Francisco"
-								actionListener="#{toolBarBean.cityListener}" />
+								actionListener="#{toolbarBean.cityListener}" />
 							<a4j:commandLink id="la" value="Los Angeles"
-								actionListener="#{toolBarBean.cityListener}" />
+								actionListener="#{toolbarBean.cityListener}" />
 						</rich:toolbarGroup>
 					</rich:toolbar>
 				</h:form>
@@ -187,10 +174,8 @@
         </h:panelGrid>
 					</a4j:outputPanel>
 				</rich:panel>
-			</rich:panel>
 			<h3>5. Toolbar with images</h3>
-			<rich:panel>
-				<rich:toolbar itemSeparator="line">
+				<rich:toolbar height="24px"  itemSeparator="line">
 					<h:graphicImage value="/images/states/california.gif" width="24"
 						height="21" />
 					<h:graphicImage value="/images/states/newyork.gif" width="24"
@@ -200,9 +185,8 @@
 					<h:graphicImage value="/images/states/massachusetts.gif" width="24"
 						height="21" />
 				</rich:toolbar>
-			</rich:panel>
 			<h3>6. Toolbar with attached popup</h3>
-			<rich:toolbar height="21">
+			<rich:toolbar height="24px">
 				<h:outputLink value="#" id="ll">
 					<rich:componentControl event="click" operation="show"
 						target="loginPane">
