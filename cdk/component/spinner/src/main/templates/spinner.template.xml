@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdk:root xmlns="http://jboss.org/schema/richfaces/cdk/xhtml-el"
+	xmlns:cdk="http://jboss.org/schema/richfaces/cdk/core" xmlns:cc="http://jboss.org/schema/richfaces/cdk/jsf/composite"
+	xmlns:c="http://jboss.org/schema/richfaces/cdk/jstl/core" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<cc:interface>
+		<cdk:class>org.richfaces.book.renderkit.SpinnerRenderer</cdk:class>
+		<cdk:superclass>org.richfaces.book.renderkit.SpinnerBaseRenderer
+		</cdk:superclass>
+		<cdk:component-family>javax.faces.Input</cdk:component-family>
+		<cdk:renderer-type>org.richfaces.book.renderkit.SpinnerRenderer
+		</cdk:renderer-type>
+		<cdk:import-attributes src="urn:attributes:events-props.xml" />
+		<cdk:import-attributes src="urn:attributes:core-props.xml" />
+		<cdk:import-attributes src="urn:attributes:i18n-props.xml" />
+		<cdk:import-attributes src="urn:attributes:focus-props.xml" />
+		<cdk:import-attributes src="urn:attributes:input-props.xml" />
+
+	</cc:interface>
+	<cc:implementation>
+		<span id="#{clientId}" class="practrf-sp #{component.attributes['styleClass']}" 
+			cdk:passThroughWithExclusions="id class">
+			<input type="text" name="#{clientId}" id="#{clientId}Input"
+				cdk:passThrough="onchange" value="#{getInputValue(facesContext, component)}"
+				disabled="#{component.attributes['disabled']?'disabled':''}" />
+			<button type="button" id="#{clientId}Dec" class="practrf-sp-dec"
+				disabled="#{component.attributes['disabled']?'disabled':''}">&lt;</button>
+			<button type="button" id="#{clientId}Inc" class="practrf-sp-inc"
+				disabled="#{component.attributes['disabled']?'disabled':''}">&gt;</button>
+			<c:if test="#{not component.attributes['disabled']}">
+				<script>
+					<cdk:scriptObject name="options">
+						<cdk:scriptOption attributes=" step maxValue minValue" />
+						<cdk:scriptOption name="value"
+							value="#{component.attributes['value']}" defaultValue="0" />
+					</cdk:scriptObject>
+					$(document.getElementById('#{clientId}')).Spinner(#{toScriptArgs(options)});
+				</script>
+			</c:if>
+		</span>
+	</cc:implementation>
+</cdk:root>

@@ -1,0 +1,22 @@
+.practrf-sp {
+   border-width: 1px;
+   border-style: solid;
+   border-color: '#{richSkin.panelBorderColor}';
+   display: inline-block;
+   font-size: 1px;
+   white-space: nowrap;
+}
+input.practrf-sp-inp[type="text"] {
+   background-color: '#{richSkin.controlBackgroundColor}';
+   border: 0px;
+   color: '#{richSkin.generalTextColor}';
+   font-family : '#{richSkin.generalFamilyFont}';
+   font-size : '#{richSkin.generalSizeFont}';
+   margin: 0px;
+   padding: 0px;
+   vertical-align: top;
+}
+button.practrf-sp-dec, button.practrf-sp-inc{
+   background-color:  '#{richSkin.headerBackgroundColor}'; 
+   background-image:none;
+}
